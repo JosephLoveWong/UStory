@@ -1,11 +1,86 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- colorPrimary 对应标题栏，也就是toolbar的颜色-->
+        <item name="colorPrimary">@color/primary_material_light</item>
+        <!--colorPrimaryDark对应状态栏的颜色-->
+        <item name="colorPrimaryDark">@color/primary_material_light_dark</item>
+        <!--colorAccent 对应一些控件，像输入框编辑，RadioButton选中、CheckBox等选中时的颜色。-->
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="KitchenThemeOverlay">
+        <item name="colorPrimary">@color/honey_melon</item>
+        <item name="colorPrimaryDark">@color/honey_melon</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!-- 状态栏、导航栏透明 -->
+    <style name="AppTransparent" parent="AppTheme.NoActionBar">
+        <!--顶部状态栏-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--底部导航栏-->
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- 为 启动页 设置背景图 -->
+    <style name="AppStartTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/default_page</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- appBar无阴影，背景透明 -->
+    <style name="KS.AppBarLayout" parent="android:Widget">
+        <item name="elevation">0dp</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="Font.H2.Touchgrey" parent="KitchenThemeOverlay">
+        <item name="android:textColor">@color/touch_grey</item>
+    </style>
+
+    <style name="ButtonStyleFlat">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@drawable/text_button_text_color</item>
+        <item name="android:background">@drawable/text_button_ripple_selector</item>
+        <item name="android:clickable">true</item>
+        <item name="android:fontFamily">fonts/BrandonTextMedium.otf</item>
+    </style>
+
+    <style name="Font">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@color/text_grey</item>
+    </style>
+
+    <style name="Font.Link">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@color/honey_melon</item>
+        <item name="android:fontFamily">fonts/BrandonTextMedium.otf</item>
+    </style>
+
+    <style name="Font.IntroScreen">
+        <item name="android:textSize">@dimen/text_size_gigantic</item>
+        <item name="android:textColor">@color/primary_text_default_material_dark</item>
+        <item name="android:fontFamily">fonts/BrandonTextMedium.otf</item>
+    </style>
+
+    <style name="ButtonStyleBig" parent="Widget.AppCompat.Button">
+        <item name="background">@color/honey_melon</item>
+        <item name="android:textSize">@dimen/text_size_h2</item>
+        <item name="android:textColor">@color/primary_text_default_material_dark</item>
+        <item name="android:padding">24dp</item>
     </style>
 
 </resources>

@@ -52,6 +52,7 @@ dependencies {
 
     implementation rootProject.ext.dependencies["timber"]
     implementation rootProject.ext.dependencies["lottie"]
+    implementation rootProject.ext.dependencies["eventbus"]
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
