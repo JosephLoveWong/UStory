@@ -1,5 +1,4 @@
 ext {
-
     android = [
             compileSdkVersion: 27,
             buildToolsVersion: "27.0.2",
@@ -54,7 +53,7 @@ ext {
 
             //ui
             "constraint-layout"   : "com.android.support.constraint:constraint-layout:1.0.2",
-            "fragmentation"       : "me.yokeyword:fragmentation:1.0.0",
+            "fragmentation"       : "me.yokeyword:fragmentation:1.2.6",
             "butterknife"         : "com.jakewharton:butterknife:8.8.1",
             "butterknife-compiler": "com.jakewharton:butterknife-compiler:8.8.1",
             "ultra-ptr"           : "in.srain.cube:ultra-ptr:1.0.11",
@@ -79,8 +78,9 @@ ext {
             "eventbus"            : "org.greenrobot:eventbus:3.1.1",
 
             //db
-            "litepal"             : "org.litepal.android:core:1.5.1",
-            "retrolambda"         : "me.tatarka:gradle-retrolambda:3.7.0",
-
+            "greendao"            : "org.greenrobot:greendao:3.2.2",
+            "objectbox-android"   : "io.objectbox:objectbox-android:1.4.2",
+            "objectbox-kotlin"    : "io.objectbox:objectbox-kotlin:1.4.2",
+            "objectbox-kapt"      : "io.objectbox:objectbox-processor:1.4.2"
     ]
 }

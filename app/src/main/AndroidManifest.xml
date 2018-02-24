@@ -14,15 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".mvp.SplashActivity"
+            android:name=".ui.mvp.SplashActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTransparent">
+            android:theme="@style/AppStartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.mvp.main.MainActivity"/>
     </application>
 
 </manifest>

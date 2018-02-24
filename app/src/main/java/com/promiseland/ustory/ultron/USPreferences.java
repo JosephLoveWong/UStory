@@ -6,4 +6,7 @@ package com.promiseland.ustory.ultron;
 
 public interface USPreferences {
     int getLastUsedVersionCodeAndUpdate();
+    boolean getDebugModeEnabled();
+
+    void setDebugModeEnabled(boolean enabled);
 }

@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.promiseland.ustory.ui.mvp.SplashActivity">
 
     <ImageView
-        android:id="@+id/splash_screen_bg"
+        android:id="@+id/iv_ad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"/>
+
+    <FrameLayout
+        android:id="@+id/fl_ad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:adjustViewBounds="true"
-        android:padding="16dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ks_logo_black"/>
-</FrameLayout>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="8.0dip"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="24.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/splash_ad_ignore_bg"
+            android:gravity="center"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:text="跳过广告"
+            android:textColor="@android:color/white"
+            android:textSize="12.0sp"/>
+    </FrameLayout>
+
+</RelativeLayout>
