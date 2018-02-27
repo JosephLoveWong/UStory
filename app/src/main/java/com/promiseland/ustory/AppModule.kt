@@ -31,4 +31,5 @@ class AppModule(private val application: Application) {
     internal fun provideEventBus(): EventBus {
         return EventBus.getDefault()
     }
+
 }

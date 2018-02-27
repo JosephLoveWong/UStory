@@ -1,9 +1,12 @@
 package com.promiseland.ustory.ui.base
 
+import javax.inject.Inject
+
 /**
  * Created by Administrator on 2018/2/24.
  */
-class BasePresenter<T : BaseContract.BaseView> : BaseContract.BasePresenter {
+open class BasePresenter<T : BaseContract.BaseView> @Inject
+constructor(): BaseContract.BasePresenter {
     var mView: T? = null
 
     override fun attachView(view: BaseContract.BaseView) {

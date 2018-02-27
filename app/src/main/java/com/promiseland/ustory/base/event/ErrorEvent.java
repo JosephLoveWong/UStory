@@ -4,6 +4,7 @@ import com.promiseland.ustory.base.util.FlagHelper;
 
 import retrofit2.HttpException;
 
+// TODO errorCode
 public class ErrorEvent extends MessageEvent {
     public final int errorCode;
 

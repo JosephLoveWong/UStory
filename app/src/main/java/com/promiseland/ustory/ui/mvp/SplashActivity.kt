@@ -1,30 +1,46 @@
 package com.promiseland.ustory.ui.mvp
 
 import android.content.Intent
+import android.support.annotation.Nullable
 import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.R
+import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.base.util.ImageLoaderUtil
+import com.promiseland.ustory.base.util.USPreferencesImpl
+import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.ui.base.BaseActivity
-import com.promiseland.ustory.ui.base.BaseContract
+import com.promiseland.ustory.ui.base.EmptyPresenter
 import com.promiseland.ustory.ui.mvp.main.MainActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_splash_screen.*
+import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 /**
  * Created by Administrator on 2018/2/24.
  */
-class SplashActivity : BaseActivity<BaseContract.BasePresenter>() {
+class SplashActivity : BaseActivity<EmptyPresenter>() {
     private val picUrl = "http://api.dujin.org/bing/1920.php"
     private val mDisposable: CompositeDisposable? = CompositeDisposable()
+
+    @Inject
+    @Nullable
+    @JvmField
+    var mPrefs: USPreferencesImpl? = null
+
+    @Inject
+    @Nullable
+    @JvmField
+    var eventBus: EventBus? = null
 
     override fun getContentLayout(): Int = R.layout.activity_splash_screen
 
     override fun setupComponent(appComponent: AppComponent) {
-
+        UStoryApp.appComponent.plus(BaseActivityModule()).inject(this)
     }
 
     override fun initData() {

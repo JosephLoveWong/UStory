@@ -48,14 +48,13 @@ dependencies {
     implementation rootProject.ext.dependencies["rxbinding2"]
 
     implementation rootProject.ext.dependencies["dagger"]
-    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     kapt rootProject.ext.dependencies["dagger-compiler"]
 
     implementation rootProject.ext.dependencies["butterknife"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    kapt rootProject.ext.dependencies["butterknife-compiler"]
 
     implementation rootProject.ext.dependencies["glide"]
-    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
 
     // bugly
     implementation rootProject.ext.dependencies["nativecrashreport"]
