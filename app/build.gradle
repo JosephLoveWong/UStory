@@ -60,6 +60,9 @@ dependencies {
     implementation rootProject.ext.dependencies["nativecrashreport"]
     implementation rootProject.ext.dependencies["crashreport"]
 
+    debugImplementation rootProject.ext.dependencies["leakcanary-debug"]
+    releaseImplementation rootProject.ext.dependencies["leakcanary-release"]
+
     implementation rootProject.ext.dependencies["timber"]
     implementation rootProject.ext.dependencies["lottie"]
     implementation rootProject.ext.dependencies["eventbus"]

@@ -6,11 +6,11 @@ import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.R
 import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.base.util.ImageLoaderUtil
-import com.promiseland.ustory.base.util.USPreferencesImpl
 import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.ui.base.BaseActivity
 import com.promiseland.ustory.ui.base.EmptyPresenter
 import com.promiseland.ustory.ui.mvp.main.MainActivity
+import com.promiseland.ustory.ultron.USPreferences
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -30,7 +30,7 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
     @Inject
     @Nullable
     @JvmField
-    var mPrefs: USPreferencesImpl? = null
+    var mPrefs: USPreferences? = null
 
     @Inject
     @Nullable
@@ -44,6 +44,9 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
     }
 
     override fun initData() {
+        val lastUsedVersion = mPrefs?.lastUsedVersionCodeAndUpdate ?: 0
+//        showWhatsNewScreenIfNeeded(lastUsedVersion)
+
         ImageLoaderUtil.LoadImage(this, picUrl, iv_ad)
 
         mDisposable?.add(countDown(4)

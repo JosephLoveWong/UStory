@@ -11,13 +11,12 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import timber.log.Timber
 import java.util.*
-import javax.inject.Inject
 
 /**
  * Created by Administrator on 2018/2/9.
  */
 
-class USPreferencesImpl @Inject
+class USPreferencesImpl
 constructor(context: Context, private val eventBus: EventBus) : USPreferences {
     private var currentLocale: Locale? = null
     private val prefs: SharedPreferences

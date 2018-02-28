@@ -2,6 +2,8 @@ package com.promiseland.ustory
 
 import android.app.Application
 import android.content.Context
+import com.promiseland.ustory.base.util.USPreferencesImpl
+import com.promiseland.ustory.ultron.USPreferences
 import dagger.Module
 import dagger.Provides
 import org.greenrobot.eventbus.EventBus
@@ -30,6 +32,12 @@ class AppModule(private val application: Application) {
     @Provides
     internal fun provideEventBus(): EventBus {
         return EventBus.getDefault()
+    }
+
+    @Singleton
+    @Provides
+    internal fun providePreferences(context: Context, eventBus: EventBus): USPreferences {
+        return USPreferencesImpl(context, eventBus)
     }
 
 }

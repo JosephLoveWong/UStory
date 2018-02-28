@@ -51,6 +51,10 @@ ext {
             "nativecrashreport"   : 'com.tencent.bugly:nativecrashreport:3.3.1',
             "crashreport"         : 'com.tencent.bugly:crashreport:2.6.6',
 
+            //leakcanary
+            "leakcanary-debug"    : 'com.squareup.leakcanary:leakcanary-android:1.5.4',
+            "leakcanary-release"  : 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4',
+
             //ui
             "constraint-layout"   : "com.android.support.constraint:constraint-layout:1.0.2",
             "fragmentation"       : "me.yokeyword:fragmentation:1.2.6",
