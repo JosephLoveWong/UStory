@@ -18,60 +18,56 @@ import java.util.*
 
 class USPreferencesImpl
 constructor(context: Context, private val eventBus: EventBus) : USPreferences {
-    private var currentLocale: Locale? = null
-    private val prefs: SharedPreferences
+    override fun getDebugModeEnabled(): Boolean {
+        return prefs.getBoolean("debug_mode_enabled", false)
+    }
 
-    val preferredLocale: Locale
-        get() {
-            if (currentLocale == null) {
-                val string = prefs.getString("locale", null)
-                currentLocale = if (string == null) {
-                    systemLocale
-                } else {
-                    Locale(string)
-                }
-            }
-            return currentLocale as Locale
+    override fun setDebugModeEnabled(enabled: Boolean) {
+        prefs.edit().putBoolean("debug_mode_enabled", enabled).apply()
+    }
+
+    override fun getFirstStartDate(): Long {
+        return prefs.getLong("first_start_date", 0)
+    }
+
+    override fun setFirstStartDate(timeMillis: Long) {
+        prefs.edit().putLong("first_start_date", timeMillis).apply()
+    }
+
+    override fun getHasSeenIntroScreen(): Boolean {
+        return prefs.getBoolean("has_seen_intro_screen", false)
+    }
+
+    override fun setHasSeenIntroScreen(hasSeen: Boolean) {
+        prefs.edit().putBoolean("has_seen_intro_screen", hasSeen).apply()
+    }
+
+    override fun getHasSeenWhatsNewScreen(): Boolean {
+        return prefs.getBoolean("has_seen_whats_new_screen", true)
+    }
+
+    override fun setHasSeenWhatsNewScreen(set: Boolean) {
+        prefs.edit().putBoolean("has_seen_whats_new_screen", set).apply()
+    }
+
+    override fun needsFirstTimeFeed(): Boolean {
+        return Calendar.getInstance().timeInMillis - getFirstStartDate() < 172800000 //TODO WHO IS 17....
+    }
+
+    override fun getLastUsedVersionCodeAndUpdate(): Int {
+        val version = prefs.getInt("last_used_version_code", 0)
+        if (version < BuildConfig.VERSION_CODE) {
+            prefs.edit().putInt("last_used_version_code", BuildConfig.VERSION_CODE).apply()
         }
-
-    private val systemLocale: Locale
-        get() {
-            return try {
-                Locale.getDefault()
-            } catch (e: Exception) {
-                Locale.CHINA
+        if (version == 0) {
+            try {
+                setFirstStartDate(Calendar.getInstance().timeInMillis)
+            } catch (th: Throwable) {
             }
 
         }
-
-    override val lastUsedVersionCodeAndUpdate: Int
-        get() {
-            val version = prefs.getInt("last_used_version_code", 0)
-            if (version < BuildConfig.VERSION_CODE) {
-                prefs.edit().putInt("last_used_version_code", BuildConfig.VERSION_CODE).apply()
-            }
-            if (version == 0) {
-                try {
-                    firstStartDate = Calendar.getInstance().timeInMillis
-                } catch (th: Throwable) {
-                }
-
-            }
-            Timber.d("last used version is %d", Integer.valueOf(version))
-            return version
-        }
-
-    var firstStartDate: Long
-        get() = prefs.getLong("first_start_date", 0)
-        set(timeMillis) = prefs.edit().putLong("first_start_date", timeMillis).apply()
-
-    override var debugModeEnabled: Boolean
-        get() = prefs.getBoolean("debug_mode_enabled", false)
-        set(enabled) = prefs.edit().putBoolean("debug_mode_enabled", enabled).apply()
-
-    init {
-        eventBus.register(this)
-        prefs = context.getSharedPreferences("us_preferences", Context.MODE_PRIVATE)
+        Timber.d("last used version is %d", Integer.valueOf(version))
+        return version
     }
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
@@ -99,5 +95,36 @@ constructor(context: Context, private val eventBus: EventBus) : USPreferences {
         } else {
             localeString == locale.language
         }
+    }
+
+    private var currentLocale: Locale? = null
+    private val prefs: SharedPreferences
+
+    private val preferredLocale: Locale
+        get() {
+            if (currentLocale == null) {
+                val string = prefs.getString("locale", null)
+                currentLocale = if (string == null) {
+                    systemLocale
+                } else {
+                    Locale(string)
+                }
+            }
+            return currentLocale as Locale
+        }
+
+    private val systemLocale: Locale
+        get() {
+            return try {
+                Locale.getDefault()
+            } catch (e: Exception) {
+                Locale.CHINA
+            }
+
+        }
+
+    init {
+        eventBus.register(this)
+        prefs = context.getSharedPreferences("us_preferences", Context.MODE_PRIVATE)
     }
 }
