@@ -72,7 +72,7 @@ ext {
             "transformations"     : "jp.wasabeef:glide-transformations:2.0.2",
             "PhotoView"           : "com.github.chrisbanes:PhotoView:2.1.2",
             "videoplayer"         : "fm.jiecao:jiecaovideoplayer:5.7",
-            "lottie"              : "com.airbnb.android:lottie:2.1.0",
+            "lottie"              : "com.airbnb.android:lottie:2.5.0",
             "progressbar"         : "me.zhanghai.android.materialprogressbar:library:1.4.1",
             "transitionhelper"    : "me.immortalz:transitionhelper:1.0.6",
             "swipebacklayout"     : "cn.bingoogolapple:bga-swipebacklayout:1.1.0@aar",

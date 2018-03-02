@@ -1,6 +1,7 @@
 package com.promiseland.ustory.module
 
 import com.promiseland.ustory.ui.mvp.SplashActivity
+import com.promiseland.ustory.ui.mvp.whatsnew.WhatsNewActivity
 import dagger.Subcomponent
 
 /**
@@ -10,4 +11,5 @@ import dagger.Subcomponent
 @Subcomponent(modules = [BaseActivityModule::class])
 interface BaseActivityComponent {
     fun inject(activity: SplashActivity)
+    fun inject(activity: WhatsNewActivity)
 }

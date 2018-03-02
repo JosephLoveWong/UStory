@@ -12,7 +12,8 @@ import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.service.api.InstallationDataService
 import com.promiseland.ustory.ui.base.BaseActivity
 import com.promiseland.ustory.ui.base.EmptyPresenter
-import com.promiseland.ustory.ui.mvp.main.MainActivity
+import com.promiseland.ustory.ui.mvp.main.FeedActivity
+import com.promiseland.ustory.ui.mvp.whatsnew.WhatsNewActivity
 import com.promiseland.ustory.ultron.USPreferences
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -102,7 +103,7 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
         Handler().postDelayed({
             if (!mPrefs!!.getHasSeenWhatsNewScreen()) {
                 mPrefs!!.setHasSeenWhatsNewScreen(true)
-//                WhatsNewActivity.launch(this)
+                WhatsNewActivity.launch(this)
                 overridePendingTransition(R.anim.do_not_move, R.anim.do_not_move)
             } else if (mPrefs!!.getHasSeenIntroScreen() /*|| this.mUserService != null && this.mUserService.isLoggedIn()*/) {// TODO user service
 //                FeedActivity.launch(this)
@@ -127,7 +128,7 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
         mDisposable?.dispose()
 
         val intent = Intent()
-        intent.setClass(this@SplashActivity, MainActivity::class.java)
+        intent.setClass(this@SplashActivity, FeedActivity::class.java)
         startActivity(intent)
         finish()
     }

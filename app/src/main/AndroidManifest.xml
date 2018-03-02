@@ -24,7 +24,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.mvp.main.MainActivity"/>
+        <activity android:name=".ui.mvp.whatsnew.WhatsNewActivity"/>
+
+        <activity android:name=".ui.mvp.main.FeedActivity"/>
     </application>
 
 </manifest>

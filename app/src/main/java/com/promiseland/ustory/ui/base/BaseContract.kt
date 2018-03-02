@@ -48,5 +48,10 @@ interface BaseContract {
          * 解除绑定
          */
         fun detachView()
+
+        /**
+         * 获取绑定的View
+         */
+        fun getView(): BaseView
     }
 }

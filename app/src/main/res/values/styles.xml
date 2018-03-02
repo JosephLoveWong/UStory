@@ -64,6 +64,16 @@
         <item name="android:textColor">@color/text_grey</item>
     </style>
 
+    <style name="Font.H1">
+        <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="android:textColor">@color/text_grey</item>
+    </style>
+
+    <style name="Font.H3">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@color/text_grey</item>
+    </style>
+
     <style name="Font.Link">
         <item name="android:textSize">@dimen/text_size_h3</item>
         <item name="android:textColor">@color/honey_melon</item>
@@ -81,6 +91,12 @@
         <item name="android:textSize">@dimen/text_size_h2</item>
         <item name="android:textColor">@color/primary_text_default_material_dark</item>
         <item name="android:padding">24dp</item>
+    </style>
+
+    <style name="ButtonStyleRaised">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@color/bg_orange_button_text_color</item>
+        <item name="android:background">@drawable/bg_orange_button</item>
     </style>
 
 </resources>
