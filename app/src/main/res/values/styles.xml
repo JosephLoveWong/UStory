@@ -6,7 +6,7 @@
         <!--colorPrimaryDark对应状态栏的颜色-->
         <item name="colorPrimaryDark">@color/primary_material_light_dark</item>
         <!--colorAccent 对应一些控件，像输入框编辑，RadioButton选中、CheckBox等选中时的颜色。-->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/honey_melon</item>
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -18,7 +18,7 @@
     <style name="KitchenThemeOverlay">
         <item name="colorPrimary">@color/honey_melon</item>
         <item name="colorPrimaryDark">@color/honey_melon</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/honey_melon</item>
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -95,20 +95,24 @@
         <item name="android:fontFamily">fonts/BrandonTextMedium.otf</item>
     </style>
 
-    <style name="google_button">
-        <item name="android:color">@color/text_grey</item>
-        <item name="android:background">@drawable/bg_google_button</item>
+    <style name="UStory.Button.Colored" parent="Widget.AppCompat.Button.Colored"/>
+
+    <style name="google_button" parent="UStory.Button.Colored">
+        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="colorButtonNormal">@color/blue_3</item>
+        <item name="colorControlHighlight">@color/blue_3</item>
     </style>
 
-    <style name="facebook_button">
-        <item name="android:background">@drawable/bg_blue_button</item>
+    <style name="facebook_button" parent="UStory.Button.Colored">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:drawablePadding">5dp</item>
     </style>
 
-    <style name="ButtonStyleBig" parent="Widget.AppCompat.Button">
-        <item name="background">@color/honey_melon</item>
+    <style name="ButtonStyleBig" parent="UStory.Button.Colored">
         <item name="android:textSize">@dimen/text_size_h2</item>
         <item name="android:textColor">@color/primary_text_default_material_dark</item>
-        <item name="android:padding">24dp</item>
+        <item name="android:padding">18dp</item>
     </style>
 
     <style name="ButtonStyleRaised">
