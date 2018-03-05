@@ -17,7 +17,7 @@ class FeedActivity : BaseActivity<BaseContract.BasePresenter>() {
         }
     }
 
-    override fun getContentLayout(): Int = R.layout.activity_intro_screen
+    override fun getContentLayout(): Int = R.layout.activity_list_with_search_bar
 
     override fun setupComponent(appComponent: AppComponent) {
     }

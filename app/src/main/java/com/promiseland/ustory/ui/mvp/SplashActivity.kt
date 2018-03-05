@@ -103,7 +103,7 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
     private fun startFeedActivity() {
         // TODO 临时设置
 //        mPrefs?.setHasSeenWhatsNewScreen(false)
-        mPrefs!!.setHasSeenIntroScreen(false)
+//        mPrefs!!.setHasSeenIntroScreen(false)
 
         Handler().postDelayed({
             if (!mPrefs!!.getHasSeenWhatsNewScreen()) {
@@ -111,7 +111,7 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
                 WhatsNewActivity.launch(this)
                 overridePendingTransition(R.anim.do_not_move, R.anim.do_not_move)
             } else if (mPrefs!!.getHasSeenIntroScreen() /*|| this.mUserService != null && this.mUserService.isLoggedIn()*/) {// TODO user service
-//                FeedActivity.launch(this)
+                FeedActivity.launch(this)
                 overridePendingTransition(R.anim.do_not_move, R.anim.do_not_move)
             } else {
                 mPrefs!!.setHasSeenIntroScreen(true)
