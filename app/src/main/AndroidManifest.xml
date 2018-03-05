@@ -26,6 +26,8 @@
 
         <activity android:name=".ui.mvp.whatsnew.WhatsNewActivity"/>
 
+        <activity android:name=".ui.mvp.introscreen.IntroScreenActivity"/>
+
         <activity android:name=".ui.mvp.main.FeedActivity"/>
     </application>
 

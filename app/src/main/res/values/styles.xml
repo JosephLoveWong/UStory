@@ -64,9 +64,18 @@
         <item name="android:textColor">@color/text_grey</item>
     </style>
 
+    <style name="Font.White">
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
     <style name="Font.H1">
         <item name="android:textSize">@dimen/text_size_h1</item>
         <item name="android:textColor">@color/text_grey</item>
+    </style>
+
+    <style name="Font.H1.White">
+        <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="android:textColor">@color/text_white</item>
     </style>
 
     <style name="Font.H3">
@@ -84,6 +93,15 @@
         <item name="android:textSize">@dimen/text_size_gigantic</item>
         <item name="android:textColor">@color/primary_text_default_material_dark</item>
         <item name="android:fontFamily">fonts/BrandonTextMedium.otf</item>
+    </style>
+
+    <style name="google_button">
+        <item name="android:color">@color/text_grey</item>
+        <item name="android:background">@drawable/bg_google_button</item>
+    </style>
+
+    <style name="facebook_button">
+        <item name="android:background">@drawable/bg_blue_button</item>
     </style>
 
     <style name="ButtonStyleBig" parent="Widget.AppCompat.Button">

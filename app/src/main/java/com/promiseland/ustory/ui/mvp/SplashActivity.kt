@@ -12,6 +12,7 @@ import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.service.api.InstallationDataService
 import com.promiseland.ustory.ui.base.BaseActivity
 import com.promiseland.ustory.ui.base.EmptyPresenter
+import com.promiseland.ustory.ui.mvp.introscreen.IntroScreenActivity
 import com.promiseland.ustory.ui.mvp.main.FeedActivity
 import com.promiseland.ustory.ui.mvp.whatsnew.WhatsNewActivity
 import com.promiseland.ustory.ultron.USPreferences
@@ -90,7 +91,7 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
 
     private fun showWhatsNewScreenIfNeeded(lastUsedVersion: Int) {
         if (lastUsedVersion != 0 && lastUsedVersion < 240) { //TODO WHO IS 240
-            mPrefs?.setHasSeenWhatsNewScreen(false)
+//            mPrefs?.setHasSeenWhatsNewScreen(false)
         }
     }
 
@@ -100,6 +101,10 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
     }
 
     private fun startFeedActivity() {
+        // TODO 临时设置
+//        mPrefs?.setHasSeenWhatsNewScreen(false)
+        mPrefs!!.setHasSeenIntroScreen(false)
+
         Handler().postDelayed({
             if (!mPrefs!!.getHasSeenWhatsNewScreen()) {
                 mPrefs!!.setHasSeenWhatsNewScreen(true)
@@ -110,7 +115,7 @@ class SplashActivity : BaseActivity<EmptyPresenter>() {
                 overridePendingTransition(R.anim.do_not_move, R.anim.do_not_move)
             } else {
                 mPrefs!!.setHasSeenIntroScreen(true)
-//                IntroScreenActivity.launch(this)
+                IntroScreenActivity.launch(this)
                 overridePendingTransition(R.anim.do_not_move, R.anim.do_not_move)
             }
             finish()

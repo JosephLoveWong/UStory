@@ -132,6 +132,7 @@
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
+    <color name="text_white">#ffffff</color>
     <color name="text_grey">#464646</color>
     <color name="text_grey_alpha_80">#e6464646</color>
     <color name="theme_accent">@color/colorAccent</color>

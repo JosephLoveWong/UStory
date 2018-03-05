@@ -10,6 +10,7 @@ import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.Interpolator
 import android.widget.Scroller
 import android.widget.TextView
@@ -61,6 +62,23 @@ class WhatsNewActivity : BaseActivity<WhatsNewPresenter>(), WhatsNewContract.Vie
         UStoryApp.appComponent.plus(BaseActivityModule()).inject(this)
     }
 
+    override fun bindView(view: View, savedInstanceState: Bundle?) {
+        mSavedPagerPosition = savedInstanceState?.getInt("STATE_VIEW_PAGER_PAGE") ?: 0
+        if (mSavedPagerPosition == 3) {
+            updateNextPageButtonText(true)
+        }
+
+        // 设置全屏
+        if (APILevelHelper.isAPILevelMinimal(19)) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        } else {
+            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+        }
+
+        mPageIndicatorListener = PageIndicatorListener(page_indicator, 4, ContextCompat.getColor(this, R.color.text_grey), ContextCompat.getColor(this, R.color.inactive_grey), mSavedPagerPosition)
+        mPageChangeListener = WhatsNewOnPageChangeListener()
+    }
+
     override fun initData() {
         RxView.clicks(btn_skip).subscribe({
             mPresenter?.closeClick()
@@ -86,22 +104,8 @@ class WhatsNewActivity : BaseActivity<WhatsNewPresenter>(), WhatsNewContract.Vie
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        var isLastPosition = false
         overridePendingTransition(R.anim.appear_from_bottom, R.anim.do_not_move)
         super.onCreate(savedInstanceState)
-        mSavedPagerPosition = savedInstanceState?.getInt("STATE_VIEW_PAGER_PAGE") ?: 0
-        if (mSavedPagerPosition == 3) {
-            isLastPosition = true
-        }
-        updateNextPageButtonText(isLastPosition)
-        if (APILevelHelper.isAPILevelMinimal(19)) {
-            window.decorView.systemUiVisibility = 1280
-        } else {
-            window.setFlags(1024, 1024)
-        }
-
-        mPageIndicatorListener = PageIndicatorListener(page_indicator, 4, ContextCompat.getColor(this, R.color.text_grey), ContextCompat.getColor(this, R.color.inactive_grey), mSavedPagerPosition)
-        mPageChangeListener = WhatsNewOnPageChangeListener()
     }
 
     override fun onResume() {
@@ -118,7 +122,7 @@ class WhatsNewActivity : BaseActivity<WhatsNewPresenter>(), WhatsNewContract.Vie
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("STATE_VIEW_PAGER_PAGE", if (pager != null) pager.getCurrentItem() else 0)
+        outState.putInt("STATE_VIEW_PAGER_PAGE", if (pager != null) pager.currentItem else 0)
     }
 
     override fun onBackPressedSupport() {
@@ -154,7 +158,7 @@ class WhatsNewActivity : BaseActivity<WhatsNewPresenter>(), WhatsNewContract.Vie
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             val layout = LayoutInflater.from(container.context).inflate(R.layout.whats_new_page_item, container, false) as ViewGroup
             layout.tag = Integer.valueOf(position)
-            mLottieAnimationViews.put(position,  ButterKnife.findById(layout, R.id.image))
+            mLottieAnimationViews.put(position, ButterKnife.findById(layout, R.id.image))
             setTexts(position, ButterKnife.findById(layout, R.id.title), ButterKnife.findById(layout, R.id.sub_title))
             container.addView(layout)
             return layout
@@ -175,13 +179,13 @@ class WhatsNewActivity : BaseActivity<WhatsNewPresenter>(), WhatsNewContract.Vie
                     return
                 }
                 2 -> {
-                    (mLottieAnimationViews.get(position) as LottieAnimationView).setAnimation("animation/whats_new_1.json")
+                    (mLottieAnimationViews.get(position) as LottieAnimationView).setAnimation("animation/whats_new_3.json")
                     title.setText(R.string.whats_new_page_headline_3)
                     sub.setText(R.string.whats_new_page_text_3)
                     return
-            }
+                }
                 3 -> {
-                    (mLottieAnimationViews.get(position) as LottieAnimationView).setAnimation("animation/whats_new_1.json")
+                    (mLottieAnimationViews.get(position) as LottieAnimationView).setAnimation("animation/whats_new_4.json")
                     title.setText(R.string.whats_new_page_headline_4)
                     sub.setText(R.string.whats_new_page_text_4)
                     return
