@@ -1,10 +1,12 @@
 package com.promiseland.ustory.ui.base
 
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.ButterKnife
 import com.promiseland.kotlinandroid.ui.base.SupportFragment
 import com.promiseland.ustory.UStoryApp
 import javax.inject.Inject
@@ -19,13 +21,20 @@ abstract class BaseFragment<T : BaseContract.BasePresenter> : SupportFragment(),
     @JvmField
     var mPresenter: T? = null
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        setupComponent(UStoryApp.appComponent)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getContentLayout(), container, false)
+        val view = inflater.inflate(getContentLayout(), container, false)
+        ButterKnife.bind(this, view)
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupComponent(UStoryApp.appComponent)
         attachView()
         initData()
     }

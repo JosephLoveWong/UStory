@@ -8,7 +8,6 @@ import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.text.SpannableString
@@ -28,7 +27,7 @@ import com.promiseland.ustory.base.util.ConfigurationUtils
 import com.promiseland.ustory.base.util.FieldHelper
 import com.promiseland.ustory.ui.base.BaseActivity
 import com.promiseland.ustory.ui.base.EmptyPresenter
-import com.promiseland.ustory.ui.mvp.main.FeedActivity
+import com.promiseland.ustory.ui.mvp.feed.FeedActivity
 import com.promiseland.ustory.ui.util.ViewHelper
 import com.promiseland.ustory.ui.util.viewpager.PageIndicatorListener
 import com.promiseland.ustory.ui.widget.util.KSUrlSpan
@@ -40,8 +39,7 @@ import java.util.*
 /**
  * Created by Administrator on 2018/3/5.
  */
-open class
-IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
+class IntroScreenActivity : BaseActivity<EmptyPresenter>() , View.OnClickListener {
 
     companion object {
         var mBackgroundVideoUri: Uri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.introscreen_bg)
@@ -58,7 +56,7 @@ IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
     private var mShouldStartFeed = false
     private var mMediaPlayer: MediaPlayer? = null
     private var mTextureListener: TextureView.SurfaceTextureListener? = null
-    private var mPageChangeListener: IntroScreenPageChangeListener = IntroScreenPageChangeListener()
+    private var mPageChangeListener: IntroScreenPageChangeListener? = null
     private var mPageIndicatorListener: PageIndicatorListener? = null
     internal var mFacebookLoginButton: View? = null
     internal var mGoogleLoginButton: View? = null
@@ -82,6 +80,7 @@ IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
             i = savedInstanceState.getInt("STATE_VIEW_PAGER_PAGE")
         }
         mSavedPagerPosition = i
+        mPageChangeListener = IntroScreenPageChangeListener()
 
         // 设置全屏
         if (APILevelHelper.isAPILevelMinimal(19)) {
@@ -180,64 +179,9 @@ IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-       pager.addOnPageChangeListener(mPageChangeListener)
-        if (mPageIndicatorListener == null) {
-            mPageIndicatorListener = PageIndicatorListener(page_indicator, 4, -1, ContextCompat.getColor(this, R.color.text_grey_alpha_80), mSavedPagerPosition)
-        }
-        pager.addOnPageChangeListener(mPageIndicatorListener!!)
-
         bg_video.surfaceTextureListener = this.mTextureListener
         if (!(!mInitSuccessfull || mMediaPlayer == null || mMediaPlayer!!.isPlaying)) {
             mMediaPlayer!!.start()
-        }
-
-        if (mSavedPagerPosition > 0 && this.mSavedPagerPosition + 1 == 4) {
-            pager.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                override fun onGlobalLayout() {
-                    if (mPageChangeListener != null) {
-                        mPageChangeListener.onPageSelected(mSavedPagerPosition)
-                    }
-                    pager.getViewTreeObserver().removeOnGlobalLayoutListener(this)
-                }
-            })
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-       pager.removeOnPageChangeListener(mPageChangeListener)
-        if (mPageIndicatorListener != null) {
-            pager.removeOnPageChangeListener(mPageIndicatorListener!!)
-            mPageIndicatorListener = null
-        }
-        bg_video.surfaceTextureListener = null
-        if (mMediaPlayer != null && mMediaPlayer!!.isPlaying) {
-            mMediaPlayer!!.pause()
-        }
-    }
-
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putBoolean("IS_FIRST_SCREEN", this.mIsFirstScreen)
-        if (mMediaPlayer != null) {
-            savedInstanceState.putLong("STATE_PLAYBACK_POSITION", mMediaPlayer!!.getCurrentPosition().toLong())
-            savedInstanceState.putInt("STATE_VIEW_PAGER_PAGE", if (pager != null) pager.currentItem else 0)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (mMediaPlayer != null) {
-            mMediaPlayer!!.setOnPreparedListener(null)
-            mMediaPlayer!!.stop()
-            mMediaPlayer!!.release()
-            mMediaPlayer = null
-        }
-        if (mGoogleLoginButton != null) {
-            mGoogleLoginButton!!.setOnClickListener(null)
-        }
-        if (mFacebookLoginButton != null) {
-            mFacebookLoginButton!!.setOnClickListener(null)
         }
     }
 
@@ -276,7 +220,7 @@ IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
 
     }
 
-    inner class IntroScreenPageChangeListener : ViewPager.OnPageChangeListener {
+    private inner class IntroScreenPageChangeListener : ViewPager.OnPageChangeListener {
 
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
@@ -336,12 +280,12 @@ IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
                 3 -> {
                     title.setText(R.string.intro_screen_sign_up)
                     sub.visibility = View.GONE
-                    ButterKnife.findById<View>(root as View, R.id.login_buttons).visibility = View.VISIBLE
-                    mGoogleLoginButton = ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_root_google)
+                    ButterKnife.findById<View>(root as View, R.id.login_buttons as Int).visibility = View.VISIBLE
+                    mGoogleLoginButton = ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_root_google as Int)
                     mGoogleLoginButton?.setOnClickListener(this@IntroScreenActivity)
-                    mFacebookLoginButton = ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_root_facebook)
+                    mFacebookLoginButton = ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_root_facebook as Int)
                     mFacebookLoginButton?.setOnClickListener(this@IntroScreenActivity)
-                    setFormattedTermsOfServiceText(ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_terms) as TextView)
+                    setFormattedTermsOfServiceText(ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_terms as Int) as TextView)
                     return
                 }
                 else -> return
@@ -355,7 +299,7 @@ IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
             val formattedString = SpannableString(text)
             val termsOfServiceIndex = text.indexOf(termsofServiceTitle)
             if (termsOfServiceIndex >= 0) {
-                formattedString.setSpan(KSUrlSpan(this@IntroScreenActivity.getString(R.string.social_auth_terms_url), object : OnClickUrlListener {
+                formattedString.setSpan(KSUrlSpan(this@IntroScreenActivity.getString(R.string.social_auth_terms_url), object : OnClickUrlListener{
                     override fun onClickUrl(str: String) {
                         // TODO
 //                        UrlHelper.openUrlInChromeCustomTab(this@IntroScreenActivity, url)
@@ -365,7 +309,7 @@ IntroScreenActivity : BaseActivity<EmptyPresenter>(), View.OnClickListener {
             }
             val privacyPolicyIndex = text.indexOf(privacyPolicy)
             if (privacyPolicyIndex >= 0) {
-                formattedString.setSpan(KSUrlSpan(this@IntroScreenActivity.getString(R.string.social_auth_privacy_policy_url), object : OnClickUrlListener {
+                formattedString.setSpan(KSUrlSpan(this@IntroScreenActivity.getString(R.string.social_auth_privacy_policy_url), object : OnClickUrlListener{
                     override fun onClickUrl(str: String) {
                         // TODO
 //                        UrlHelper.openUrlInChromeCustomTab(this@IntroScreenActivity, url)

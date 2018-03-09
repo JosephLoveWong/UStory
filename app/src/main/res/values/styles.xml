@@ -15,7 +15,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="KitchenThemeOverlay">
+    <style name="KitchenThemeOverlay" parent="AppTheme">
         <item name="colorPrimary">@color/honey_melon</item>
         <item name="colorPrimaryDark">@color/honey_melon</item>
         <item name="colorAccent">@color/honey_melon</item>

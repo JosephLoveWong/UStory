@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/separator"/>
+
+    <group android:id="@+id/navigation">
+        <item
+            android:id="@+id/action_home"
+            android:icon="@drawable/nav_drawer_home_selector"
+            android:orderInCategory="1"
+            android:title="@string/navigation_recipes"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/action_howto"
+            android:icon="@drawable/nav_drawer_howto_selector"
+            android:orderInCategory="1"
+            android:title="@string/navigation_cooking_tips"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/action_categories"
+            android:icon="@drawable/nav_drawer_categories_selector"
+            android:orderInCategory="1"
+            android:title="@string/navigation_search_categories"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/action_my_recipes"
+            android:icon="@drawable/nav_drawer_my_selector"
+            android:orderInCategory="1"
+            android:title="@string/navigation_my_recipes"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/action_shoppinglist"
+            android:icon="@drawable/nav_drawer_shoppinglist_selector"
+            android:orderInCategory="1"
+            android:title="@string/navigation_shopping_list"
+            app:showAsAction="always"/>
+    </group>
+
+    <group android:id="@+id/about">
+        <item
+            android:id="@+id/action_feedback"
+            android:icon="@drawable/nav_drawer_feedback_selector"
+            android:orderInCategory="1"
+            android:title="@string/MENU_FEEDBACK"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/action_info"
+            android:icon="@drawable/nav_drawer_aboutus_selector"
+            android:orderInCategory="1"
+            android:title="@string/navigation_about_us"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/action_setting"
+            android:icon="@drawable/nav_drawer_settings_selector"
+            android:orderInCategory="1"
+            android:title="@string/navigation_settings"
+            app:showAsAction="always"/>
+    </group>
+
+</menu>

@@ -23,7 +23,7 @@ import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.base.util.APILevelHelper
 import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.ui.base.BaseActivity
-import com.promiseland.ustory.ui.mvp.main.FeedActivity
+import com.promiseland.ustory.ui.mvp.feed.FeedActivity
 import com.promiseland.ustory.ui.util.viewpager.PageIndicatorListener
 import kotlinx.android.synthetic.main.activity_whats_new.*
 import timber.log.Timber

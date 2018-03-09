@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,42 +14,43 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
             android:background="@color/transparent"
             android:elevation="0dp">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_scrollFlags="5"
-                android:background="@color/transparent"/>
+                android:background="@color/transparent"
+                app:layout_scrollFlags="scroll|enterAlways"/>
         </android.support.design.widget.AppBarLayout>
 
-        <com.ajnsnewmedia.kitchenstories.ui.base.EmptyStateRecyclerView
-            android:id="@+id/empty_state_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:scrollbars="UNKNOWN_DATA_0x0"/>
+        <!--<com.ajnsnewmedia.kitchenstories.ui.base.EmptyStateRecyclerView-->
+        <!--android:id="@+id/empty_state_recycler_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+        <!--android:scrollbars="UNKNOWN_DATA_0x0"/>-->
 
         <!--<include-->
         <!--android:id="@+id/cast_mini_controller"-->
         <!--layout="@layout/include_cast_mini_controller"/>-->
 
-        <com.ajnsnewmedia.kitchenstories.ui.widget.TimerView
-            android:id="@+id/timer_view"
-            style="@style/timer"
-            android:layout_marginTop="@dimen/timer_view_margin_top_search_bar_page"/>
+        <!--<com.ajnsnewmedia.kitchenstories.ui.widget.TimerView-->
+        <!--android:id="@+id/timer_view"-->
+        <!--style="@style/timer"-->
+        <!--android:layout_marginTop="@dimen/timer_view_margin_top_search_bar_page"/>-->
     </android.support.design.widget.CoordinatorLayout>
 
     <!--<include-->
     <!--android:id="@+id/floating_search_view"-->
     <!--layout="@layout/include_searchbar"/>-->
 
-    <!--<fragment-->
-    <!--android:id="@+id/navigation_drawer"-->
-    <!--android:name="com.ajnsnewmedia.kitchenstories.ui.drawer.NavigationDrawerFragment"-->
-    <!--android:layout_width="UNKNOWN_DATA_0x7f07014a"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"/>-->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nv_menu_left"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        app:headerLayout="@layout/list_item_drawer_top"
+        app:menu="@menu/menu_drawer"/>
 </android.support.v4.widget.DrawerLayout>

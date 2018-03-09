@@ -28,7 +28,8 @@
 
         <activity android:name=".ui.mvp.introscreen.IntroScreenActivity"/>
 
-        <activity android:name=".ui.mvp.main.FeedActivity"/>
+        <activity android:name=".ui.mvp.feed.FeedActivity"
+            android:theme="@style/KitchenThemeOverlay"/>
     </application>
 
 </manifest>

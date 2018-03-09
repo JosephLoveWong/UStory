@@ -13,7 +13,7 @@ import com.promiseland.ustory.service.api.InstallationDataService
 import com.promiseland.ustory.ui.base.BaseActivity
 import com.promiseland.ustory.ui.base.EmptyPresenter
 import com.promiseland.ustory.ui.mvp.introscreen.IntroScreenActivity
-import com.promiseland.ustory.ui.mvp.main.FeedActivity
+import com.promiseland.ustory.ui.mvp.feed.FeedActivity
 import com.promiseland.ustory.ui.mvp.whatsnew.WhatsNewActivity
 import com.promiseland.ustory.ultron.USPreferences
 import io.reactivex.Observable

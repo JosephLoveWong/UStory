@@ -8,4 +8,5 @@ import dagger.Subcomponent
 @BaseFragmentScope
 @Subcomponent(modules = [BaseFragmentModule::class])
 interface BaseFragmentComponent {
+//    fun inject(fragment: NavigationDrawerFragment)
 }
