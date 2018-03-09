@@ -52,5 +52,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="left"
         app:headerLayout="@layout/list_item_drawer_top"
+        app:itemBackground="@drawable/bg_transparent"
         app:menu="@menu/menu_drawer"/>
 </android.support.v4.widget.DrawerLayout>

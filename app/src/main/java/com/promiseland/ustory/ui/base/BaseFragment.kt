@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
 import com.promiseland.kotlinandroid.ui.base.SupportFragment
+import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.UStoryApp
 import javax.inject.Inject
 
@@ -46,6 +47,9 @@ abstract class BaseFragment<T : BaseContract.BasePresenter> : SupportFragment(),
     override fun onDestroyView() {
         mPresenter?.detachView()
         super.onDestroyView()
+    }
+
+    override fun setupComponent(appComponent: AppComponent) {
     }
 
     override fun bindView(view: View, savedInstanceState: Bundle?) {

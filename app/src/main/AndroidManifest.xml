@@ -29,7 +29,10 @@
         <activity android:name=".ui.mvp.introscreen.IntroScreenActivity"/>
 
         <activity android:name=".ui.mvp.feed.FeedActivity"
-            android:theme="@style/KitchenThemeOverlay"/>
+            android:theme="@style/KitchenThemeOverlay"
+            android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.mvp.about.AboutUsActivity"/>
     </application>
 
 </manifest>

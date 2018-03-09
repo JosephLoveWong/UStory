@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.annotation.Nullable
 import android.view.View
 import com.promiseland.kotlinandroid.ui.base.SupportActivity
+import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.UStoryApp
 import javax.inject.Inject
 
@@ -36,6 +37,9 @@ abstract class BaseActivity<T : BaseContract.BasePresenter> : SupportActivity(),
     override fun onDestroy() {
         mPresenter?.detachView()
         super.onDestroy()
+    }
+
+    override fun setupComponent(appComponent: AppComponent) {
     }
 
     override fun bindView(view: View, savedInstanceState: Bundle?) {
