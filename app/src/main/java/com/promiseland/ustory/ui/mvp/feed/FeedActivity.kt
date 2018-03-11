@@ -8,6 +8,7 @@ import com.promiseland.ustory.R
 import com.promiseland.ustory.ui.base.BaseActivity
 import com.promiseland.ustory.ui.base.BaseContract
 import com.promiseland.ustory.ui.mvp.about.AboutUsActivity
+import com.promiseland.ustory.ui.mvp.settings.SettingsOverviewActivity
 import kotlinx.android.synthetic.main.activity_list_with_search_bar.*
 
 /**
@@ -51,7 +52,7 @@ class FeedActivity : BaseActivity<BaseContract.BasePresenter>() {
                     AboutUsActivity.launch(this@FeedActivity)
                 }
                 R.id.action_setting -> {
-                    FeedActivity.launch(this@FeedActivity)
+                    SettingsOverviewActivity.launch(this@FeedActivity)
                 }
             }
             this@FeedActivity.overridePendingTransition(R.anim.do_not_move_with_fade_in, R.anim.do_not_move_with_fade_out)

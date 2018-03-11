@@ -400,4 +400,7 @@
     <dimen name="whats_new_page_indicator_space_bottom">16dp</dimen>
     <dimen name="whats_new_title_space_top">96dp</dimen>
     <dimen name="wrap_content">-3px</dimen>
+
+    <dimen name="settings_detail_list_padding_lr">16dp</dimen>
+    <dimen name="settings_overview_list_padding_lr">16dp</dimen>
 </resources>

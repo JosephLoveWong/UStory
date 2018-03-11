@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@id/title"
+          style="@style/Font.H3"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center_horizontal"
+          android:maxLines="1"
+          android:paddingBottom="8dp"
+          android:paddingEnd="@dimen/settings_overview_list_padding_lr"
+          android:paddingStart="@dimen/settings_overview_list_padding_lr"
+          android:paddingTop="8dp"/>

@@ -5,9 +5,9 @@ import javax.inject.Inject
 /**
  * Created by Administrator on 2018/2/24.
  */
-open class BasePresenter<T : BaseContract.BaseView> @Inject
+open class BasePresenter<out T : BaseContract.BaseView> @Inject
 constructor() : BaseContract.BasePresenter {
-    var mView: T? = null
+    private var mView: T? = null
 
     override fun getView(): T = mView as T
 

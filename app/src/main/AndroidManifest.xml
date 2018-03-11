@@ -33,6 +33,8 @@
             android:launchMode="singleTask"/>
 
         <activity android:name=".ui.mvp.about.AboutUsActivity"/>
+
+        <activity android:name=".ui.mvp.settings.SettingsOverviewActivity"/>
     </application>
 
 </manifest>
