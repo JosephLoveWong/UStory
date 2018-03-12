@@ -26,6 +26,14 @@ class SettingsOverviewAdapter(private val presenter: SettingsOverviewPresenter) 
     override fun getItemCount(): Int = presenter.getItemCount()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+        val item = presenter.getItem(position)
+        when(item) {
+            is SettingsOverviewHeaderItem -> (holder as SettingsOverviewTitleHolder).title.setText(item.title)
+            is SettingsOverviewItem -> {
+                (holder as SettingsOverviewItemHolder).title.setText(item.label)
+                holder.icon.setImageResource(item.icon)
+            }
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -36,6 +44,7 @@ class SettingsOverviewAdapter(private val presenter: SettingsOverviewPresenter) 
             is SettingsOverviewSeparatorItem -> 2
             is SettingsOverviewUserProfileItem -> 3
             is SettingsOverviewLogOutItem -> 4
+            else -> throw IllegalArgumentException("Unknown item type in SettingsOverviewAdapter")
         }
     }
 }

@@ -403,4 +403,5 @@
 
     <dimen name="settings_detail_list_padding_lr">16dp</dimen>
     <dimen name="settings_overview_list_padding_lr">16dp</dimen>
+    <dimen name="settings_overview_recycler_view_padding">8dp</dimen>
 </resources>

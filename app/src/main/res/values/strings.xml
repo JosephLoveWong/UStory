@@ -706,4 +706,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum lorem 
     <string name="settings_overview_profile_logged_out_subtitle">Create an account to fully enjoy the Kitchen Stories app.</string>
     <string name="settings_overview_title_more">More</string>
     <string name="settings_overview_title_system">System</string>
+    <string name="settings_invite_friends_title">Tell a friend</string>
+    <string name="settings_item_legal_info_title">Legal Information</string>
 </resources>

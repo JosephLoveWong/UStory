@@ -30,7 +30,7 @@ interface SettingsOverviewContract {
     }
 
     interface Presenter : BaseContract.BasePresenter {
-        fun getItem(position: Int): SettingsOverviewListItem
+        fun getItem(position: Int): SettingsOverviewListItem?
 
         fun getItemCount(): Int
 

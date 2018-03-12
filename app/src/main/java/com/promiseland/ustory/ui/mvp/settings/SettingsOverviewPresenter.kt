@@ -2,12 +2,9 @@ package com.promiseland.ustory.ui.mvp.settings
 
 import com.promiseland.ustory.R
 import com.promiseland.ustory.base.model.ui.user.UserUiModel
-import com.promiseland.ustory.service.api.UserService
+import com.promiseland.ustory.base.util.FieldHelper
 import com.promiseland.ustory.ui.base.BasePresenter
-import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewHeaderItem
-import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewItem
-import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewListItem
-import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewUserProfileItem
+import com.promiseland.ustory.ui.mvp.settings.adapter.*
 import java.util.Arrays.asList
 
 /**
@@ -19,18 +16,22 @@ class SettingsOverviewPresenter : BasePresenter<SettingsOverviewActivity>(), Set
 //    var userService: UserService? = null
     private val settingsOverviewItems: List<SettingsOverviewListItem> by lazy {
         asList(SettingsOverviewUserProfileItem(),
-                SettingsOverviewHeaderItem(R.string.settings_overview_title_system)/*,
-                SettingsOverviewItem(R.string.settings_header_languages),
-                SettingsOverviewItem(R.string.settings_header_measurements),
-                SettingsOverviewItem(R.string.settings_video_playback_header),
-                SettingsOverviewItem(R.string.settings_push_notification_title),
-                SettingsOverviewHeaderItem(R.string.settings_overview_title_more),
-                SettingsOverviewItem(R.string.navigation_about_us),
-                SettingsOverviewItem(R.string.MENU_FEEDBACK),
-                SettingsOverviewItem(R.string.menu_tell_a_friend)*/)
+                SettingsOverviewSeparatorItem(),
+                SettingsOverviewHeaderItem(R.string.settings_overview_title_system),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_languages, R.string.settings_header_languages, SettingsOverviewItemType.LANGUAGE),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_measurements, R.string.settings_header_measurements, SettingsOverviewItemType.MEASUREMENTS),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_autoplay, R.string.settings_video_playback_header, SettingsOverviewItemType.VIDEO_AUTOPLAY),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_notifications, R.string.settings_push_notification_title, SettingsOverviewItemType.NOTIFICATIONS),
+                SettingsOverviewSeparatorItem(),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_about_us, R.string.navigation_about_us, SettingsOverviewItemType.ABOUT_US),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_feedback, R.string.MENU_FEEDBACK, SettingsOverviewItemType.FEEDBACK),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_share, R.string.settings_invite_friends_title, SettingsOverviewItemType.SHARE),
+                SettingsOverviewItem(R.drawable.vec_icon_settings_legal_info, R.string.settings_item_legal_info_title, SettingsOverviewItemType.LEGAL_INFO),
+                SettingsOverviewLogOutItem())
     }
 
-    override fun getItem(position: Int): SettingsOverviewListItem {
+    override fun getItem(position: Int): SettingsOverviewListItem? {
+        return if (FieldHelper.hasPosition(settingsOverviewItems, position)) settingsOverviewItems[position] else null
     }
 
     override fun getItemCount(): Int {
