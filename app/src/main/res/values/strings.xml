@@ -702,4 +702,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum lorem 
     <string name="technical_not_set">NOT SET</string>
     <string name="error_state_fullscreen_title">Oops, something went wrong!</string>
     <string name="settings_overview_log_out">Log out</string>
+    <string name="settings_overview_profile_logged_out_title">You don\'t have an account yet.</string>
+    <string name="settings_overview_profile_logged_out_subtitle">Create an account to fully enjoy the Kitchen Stories app.</string>
+    <string name="settings_overview_title_more">More</string>
+    <string name="settings_overview_title_system">System</string>
 </resources>

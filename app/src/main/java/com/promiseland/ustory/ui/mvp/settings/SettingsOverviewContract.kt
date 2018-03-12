@@ -4,6 +4,8 @@ import com.promiseland.ustory.base.event.ErrorEvent
 import com.promiseland.ustory.base.model.ui.user.UserUiModel
 import com.promiseland.ustory.base.model.ui.user.UserUiModelSuccess
 import com.promiseland.ustory.ui.base.BaseContract
+import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewItem
+import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewListItem
 
 /**
  * Created by joseph on 2018/3/11.

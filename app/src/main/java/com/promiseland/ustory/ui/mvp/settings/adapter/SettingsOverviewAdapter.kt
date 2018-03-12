@@ -3,7 +3,8 @@ package com.promiseland.ustory.ui.mvp.settings.adapter
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
 import android.view.ViewGroup
-import com.promiseland.ustory.ui.mvp.settings.*
+import com.promiseland.ustory.ui.mvp.settings.SettingsOverviewPresenter
+import com.promiseland.ustory.ui.mvp.settings.adapter.holder.*
 
 /**
  * Created by joseph on 2018/3/11.
@@ -13,11 +14,11 @@ class SettingsOverviewAdapter(private val presenter: SettingsOverviewPresenter) 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            0 -> SettingsOverviewItemHolder(parent, this.presenter)
+            0 -> SettingsOverviewItemHolder(parent, presenter)
             1 -> SettingsOverviewTitleHolder(parent)
             2 -> HorizontalSeparatorHolder(parent)
-            3 -> SettingsOverviewProfileHolder(parent, this.presenter)
-            4 -> SettingsOverviewLogOutHolder(parent, this.presenter)
+            3 -> SettingsOverviewProfileHolder(parent, presenter)
+            4 -> SettingsOverviewLogOutHolder(parent, presenter)
             else -> throw IllegalArgumentException("Unknown view type in SettingsOverviewAdapter")
         }
     }
@@ -25,7 +26,6 @@ class SettingsOverviewAdapter(private val presenter: SettingsOverviewPresenter) 
     override fun getItemCount(): Int = presenter.getItemCount()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getItemViewType(position: Int): Int {

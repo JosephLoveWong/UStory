@@ -29,7 +29,7 @@ public class RoundedFrameLayout extends FrameLayout {
         super(context, attrs, defStyleAttr);
         this.mPath = new Path();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RoundedFrameLayout, 0, 0);
-        this.mCornerRadius = (float) typedArray.getDimensionPixelSize(R.styleable.RoundedFrameLayout_cornerRadius, 0);
+        this.mCornerRadius = (float) typedArray.getDimensionPixelSize(R.styleable.RoundedFrameLayout_corner_radius, 0);
         typedArray.recycle();
     }
 
