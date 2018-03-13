@@ -701,11 +701,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum lorem 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="technical_not_set">NOT SET</string>
     <string name="error_state_fullscreen_title">Oops, something went wrong!</string>
-    <string name="settings_overview_log_out">Log out</string>
-    <string name="settings_overview_profile_logged_out_title">You don\'t have an account yet.</string>
-    <string name="settings_overview_profile_logged_out_subtitle">Create an account to fully enjoy the Kitchen Stories app.</string>
-    <string name="settings_overview_title_more">More</string>
-    <string name="settings_overview_title_system">System</string>
-    <string name="settings_invite_friends_title">Tell a friend</string>
-    <string name="settings_item_legal_info_title">Legal Information</string>
+    <string name="settings_overview_log_out">退出</string>
+    <string name="settings_overview_profile_logged_out_title">你还没有注册账号呢。</string>
+    <string name="settings_overview_profile_logged_out_subtitle">注册账号书写你的“厨房故事”吧。</string>
+    <string name="settings_overview_title_more">更多</string>
+    <string name="settings_overview_title_system">系统</string>
+    <string name="settings_invite_friends_title">告诉朋友</string>
+    <string name="settings_item_legal_info_title">法律信息</string>
 </resources>

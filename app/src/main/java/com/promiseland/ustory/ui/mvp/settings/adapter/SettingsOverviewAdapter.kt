@@ -3,8 +3,10 @@ package com.promiseland.ustory.ui.mvp.settings.adapter
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
 import android.view.ViewGroup
+import com.promiseland.ustory.R
 import com.promiseland.ustory.ui.mvp.settings.SettingsOverviewPresenter
 import com.promiseland.ustory.ui.mvp.settings.adapter.holder.*
+import com.promiseland.ustory.ui.util.ViewHelper
 
 /**
  * Created by joseph on 2018/3/11.
@@ -32,6 +34,19 @@ class SettingsOverviewAdapter(private val presenter: SettingsOverviewPresenter) 
             is SettingsOverviewItem -> {
                 (holder as SettingsOverviewItemHolder).title.setText(item.label)
                 holder.icon.setImageResource(item.icon)
+            }
+            is SettingsOverviewUserProfileItem -> {
+                holder as SettingsOverviewProfileHolder
+                if(presenter.isLoggedIn()) {
+                    // TODO
+                    holder.title.setText(R.string.settings_overview_profile_logged_out_title)
+                    holder.subtitle.setText(R.string.settings_overview_profile_logged_out_subtitle)
+                    ViewHelper.makeGone(holder.loading_indicator)
+                } else {
+                    holder.title.setText(R.string.settings_overview_profile_logged_out_title)
+                    holder.subtitle.setText(R.string.settings_overview_profile_logged_out_subtitle)
+                    ViewHelper.makeGone(holder.loading_indicator)
+                }
             }
         }
     }

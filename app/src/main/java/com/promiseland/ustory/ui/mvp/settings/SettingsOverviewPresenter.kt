@@ -23,6 +23,7 @@ class SettingsOverviewPresenter : BasePresenter<SettingsOverviewActivity>(), Set
                 SettingsOverviewItem(R.drawable.vec_icon_settings_autoplay, R.string.settings_video_playback_header, SettingsOverviewItemType.VIDEO_AUTOPLAY),
                 SettingsOverviewItem(R.drawable.vec_icon_settings_notifications, R.string.settings_push_notification_title, SettingsOverviewItemType.NOTIFICATIONS),
                 SettingsOverviewSeparatorItem(),
+                SettingsOverviewHeaderItem(R.string.settings_overview_title_more),
                 SettingsOverviewItem(R.drawable.vec_icon_settings_about_us, R.string.navigation_about_us, SettingsOverviewItemType.ABOUT_US),
                 SettingsOverviewItem(R.drawable.vec_icon_settings_feedback, R.string.MENU_FEEDBACK, SettingsOverviewItemType.FEEDBACK),
                 SettingsOverviewItem(R.drawable.vec_icon_settings_share, R.string.settings_invite_friends_title, SettingsOverviewItemType.SHARE),

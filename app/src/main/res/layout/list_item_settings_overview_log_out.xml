@@ -7,7 +7,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
         android:background="@color/background_grey"/>
 
     <TextView
@@ -15,6 +15,7 @@
         style="@style/ButtonStyleFlat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/settings_overview_log_out"/>

@@ -88,6 +88,11 @@
         <item name="android:fontFamily">fonts/BrandonTextMedium.otf</item>
     </style>
 
+    <style name="Font.Touchgrey">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@color/touch_grey</item>
+    </style>
+
     <style name="Font.IntroScreen">
         <item name="android:textSize">@dimen/text_size_gigantic</item>
         <item name="android:textColor">@color/primary_text_default_material_dark</item>
