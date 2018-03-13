@@ -1,24 +1,37 @@
 package com.promiseland.ustory.ultron.base
 
+import android.os.Parcel
+import android.os.Parcelable
+
 /**
  * Created by joseph on 2018/3/11.
  */
-class Image
-(private val url: String, private val source: String?, private val width: Int?, private val height: Int?) {
+data class Image
+(val url: String, val source: String?, val width: Int?, val height: Int?) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readValue(Int::class.java.classLoader) as? Int,
+            parcel.readValue(Int::class.java.classLoader) as? Int)
 
-    fun getUrl(): String {
-        return this.url
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(url)
+        parcel.writeString(source)
+        parcel.writeValue(width)
+        parcel.writeValue(height)
     }
 
-    fun getSource(): String? {
-        return this.source
+    override fun describeContents(): Int {
+        return 0
     }
 
-    fun getWidth(): Int? {
-        return this.width
-    }
+    companion object CREATOR : Parcelable.Creator<Image> {
+        override fun createFromParcel(parcel: Parcel): Image {
+            return Image(parcel)
+        }
 
-    fun getHeight(): Int? {
-        return this.height
+        override fun newArray(size: Int): Array<Image?> {
+            return arrayOfNulls(size)
+        }
     }
 }

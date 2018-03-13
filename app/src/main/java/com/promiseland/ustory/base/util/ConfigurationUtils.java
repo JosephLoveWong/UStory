@@ -16,9 +16,15 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
+import com.promiseland.ustory.R;
+
 import java.util.Locale;
 
 public class ConfigurationUtils {
+
+    public static boolean isTablet(Context context) {
+        return context != null && context.getResources().getBoolean(R.bool.isTablet);
+    }
 
     public static Point getScreenSize(Activity activity) {
         DisplayMetrics metrics = new DisplayMetrics();
