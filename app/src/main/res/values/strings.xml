@@ -697,7 +697,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum lorem 
     <string name="whats_new_page_text_4">有任何建议或意见，请致信hello@kitchenstories.de。</string>
     <string name="whats_new_text">您可以切换到英语，以获得更频繁的食谱更新。</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="technical_not_set">NOT SET</string>
     <string name="error_state_fullscreen_title">Oops, something went wrong!</string>

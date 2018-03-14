@@ -66,6 +66,7 @@ ext {
             "BaseAdapterHelper"   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.24",
             "glide"               : "com.github.bumptech.glide:glide:4.6.1",
             "glide-compiler"      : "com.github.bumptech.glide:compiler:4.6.1",
+            "glide-integration"   : "com.github.bumptech.glide:okhttp3-integration:4.6.1",
             "banner"              : "com.youth.banner:banner:1.4.9",
             "viewanimator"        : "com.github.florent37:viewanimator:1.0.5",
             "FlycoDialog"         : "com.flyco.dialog:FlycoDialog_Lib:1.3.2@aar",

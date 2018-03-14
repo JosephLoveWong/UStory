@@ -8,8 +8,14 @@ import javax.net.ssl.X509TrustManager;
 import timber.log.Timber;
 
 public final class OkHttpHelper {
-    public static final void overwriteSslBelowLollipop(okhttp3.OkHttpClient.Builder r1) {
-       // TODO
+    public static final void overwriteSslBelowLollipop(okhttp3.OkHttpClient.Builder builder) {
+        if (shouldOverwriteSSL()) {
+            SSLSocketFactory tlsSocketFactory = getTLSSocketFactory();
+            X509TrustManager trustManager = getTrustManager();
+            if (tlsSocketFactory != null && trustManager != null) {
+                builder.sslSocketFactory(tlsSocketFactory, trustManager);
+            }
+        }
     }
 
     public static final SSLSocketFactory getTLSSocketFactory() {

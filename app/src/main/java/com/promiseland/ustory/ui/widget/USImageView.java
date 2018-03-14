@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -20,8 +19,10 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.promiseland.ustory.R;
 import com.promiseland.ustory.base.model.Screen;
-import com.promiseland.ustory.base.model.ui.base.ImageUiModel;
 import com.promiseland.ustory.base.util.FieldHelper;
+import com.promiseland.ustory.base.util.GlideHelper;
+import com.promiseland.ustory.ui.util.glide.GlideRequest;
+import com.promiseland.ustory.ui.util.glide.GlideRequests;
 import com.promiseland.ustory.ultron.base.Image;
 
 import java.util.Locale;
@@ -169,7 +170,7 @@ public class USImageView extends AppCompatImageView implements RequestListener<D
             if (this.mDontTransform) {
                 request = request.dontTransform();
             }
-            request.into((ImageView) this);
+            request.into(this);
         }
     }
 
@@ -186,7 +187,7 @@ public class USImageView extends AppCompatImageView implements RequestListener<D
 
     private static String createKsUrl(String url, String size, String orientation) {
         String imageUrl = url.substring(0, url.length() - 4);
-        int pos = imageUrl.lastIndexOf(47);
+        int pos = imageUrl.lastIndexOf('/');
         if (pos <= 0 || pos > imageUrl.length()) {
             return url;
         }
@@ -225,39 +226,6 @@ public class USImageView extends AppCompatImageView implements RequestListener<D
     public void loadUrl(Image image, int defaultImage, boolean doSmart) {
         this.mDefaultImage = defaultImage;
         loadUrl(image, doSmart);
-    }
-
-    public void load(CommentImageUiModel commentImageUiModel) {
-        if (commentImageUiModel != null && commentImageUiModel.isValid()) {
-            if (commentImageUiModel.getCommentImage() != null) {
-                loadUrl(commentImageUiModel.getCommentImage().getImageUrl());
-            } else {
-                startBitmapWorkerTask(new ImageInfo(1, commentImageUiModel.getSubPath(), commentImageUiModel.getFileName()));
-            }
-        }
-    }
-
-    public void load(ImageUiModel imageUiModel, int imageType) {
-        if (imageUiModel != null && imageUiModel.isValid()) {
-            if (imageUiModel.getImage() == null || FieldHelper.INSTANCE.isEmpty(imageUiModel.getImage().getUrl())) {
-                startBitmapWorkerTask(new ImageInfo(imageType, imageUiModel.getSubPath(), imageUiModel.getFileName()));
-            } else {
-                loadUrl(imageUiModel.getImage().getUrl());
-            }
-        }
-    }
-
-    private void startBitmapWorkerTask(ImageInfo imageInfo) {
-        reset();
-        new BitmapWorkerTask(this, new KSImageView$$Lambda$0(this, imageInfo)).execute(new Integer[0]);
-    }
-
-    final /* synthetic */ Bitmap lambda$startBitmapWorkerTask$0$KSImageView(ImageInfo imageInfo) {
-        return loadBitmap(imageInfo);
-    }
-
-    private Bitmap loadBitmap(ImageInfo imageInfo) {
-        return ImageScalingHelper.getScaledAndCroppedBitmap(KitchenStoriesApp.getAppContext(), imageInfo);
     }
 
     public void setImageResource(int resId) {
@@ -312,8 +280,8 @@ public class USImageView extends AppCompatImageView implements RequestListener<D
         }
         if (target instanceof ViewTarget) {
             View view = ((ViewTarget) target).getView();
-            CharSequence dumbUrl = (String) view.getTag(R.id.ks_imageview_original);
-            if (!FieldHelper.isEmpty(dumbUrl) && !dumbUrl.equals(model)) {
+            String dumbUrl = (String) view.getTag(R.id.ks_imageview_original);
+            if (!FieldHelper.INSTANCE.isEmpty(dumbUrl) && !dumbUrl.equals(model)) {
                 view.setTag(R.id.ks_imageview_original, "");
                 loadInternal(dumbUrl);
                 return true;
@@ -326,6 +294,7 @@ public class USImageView extends AppCompatImageView implements RequestListener<D
         return false;
     }
 
+    @Override
     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
         Timber.v("onResourceReady(%s, %s, %s, %s)", resource, model, target, Boolean.valueOf(isFirstResource));
         if (target instanceof ViewTarget) {

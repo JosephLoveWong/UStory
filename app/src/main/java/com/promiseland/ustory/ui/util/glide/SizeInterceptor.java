@@ -35,7 +35,7 @@ public class SizeInterceptor implements Interceptor {
 
     @SuppressLint({"DefaultLocale"})
     private Response checkFileSize(String fileUrl, Response response) throws IOException {
-        if (!response.isSuccessful() || !fileUrl.endsWith(".gif") || response.body().contentLength() <= 1572864) {
+        if (!response.isSuccessful() || !fileUrl.endsWith(".gif") || response.body().contentLength() <= 1.5 * 1024 * 1024) {
             return response;
         }
         throw new FileSizeExceedsLimitException(String.format("The file exceeds the file limit of 1.5 MB: %s currently: %d", new Object[]{fileUrl, Long.valueOf(response.body().contentLength())}));

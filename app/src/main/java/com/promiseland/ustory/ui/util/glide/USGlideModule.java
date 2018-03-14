@@ -2,11 +2,14 @@ package com.promiseland.ustory.ui.util.glide;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Registry;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheWrapper;
 import com.bumptech.glide.load.model.GlideUrl;
@@ -19,30 +22,38 @@ import java.io.InputStream;
 import okhttp3.OkHttpClient.Builder;
 import timber.log.Timber;
 
-public class KSGlideModule extends AppGlideModule {
+/**
+ * Created by Administrator on 2018/3/14.
+ */
+
+@GlideModule
+public class USGlideModule extends AppGlideModule{
     private static DiskCache sDiskCache = null;
 
-    public void applyOptions(Context context, GlideBuilder builder) {
+    @Override
+    public boolean isManifestParsingEnabled() {
+        return false;
+    }
+
+    @Override
+    public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
         DiskCache diskCache = getDiskCache(context);
         if (diskCache != null) {
-            builder.setDiskCache(new KSGlideModule$$Lambda$0(diskCache));
+            builder.setDiskCache(() -> diskCache);
         }
     }
 
-    static final /* synthetic */ DiskCache lambda$applyOptions$0$KSGlideModule(DiskCache diskCache) {
-        return diskCache;
-    }
-
-    public void registerComponents(Context context, Glide glide, Registry registry) {
+    @Override
+    public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
         Builder builder = new Builder();
         OkHttpHelper.overwriteSslBelowLollipop(builder);
         builder.addInterceptor(new SizeInterceptor());
-        registry.append(GlideUrl.class, InputStream.class, new Factory(builder.build()));
+        registry.append(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(builder.build()));
     }
 
     public static synchronized DiskCache getDiskCache(Context context) {
         DiskCache diskCache;
-        synchronized (KSGlideModule.class) {
+        synchronized (USGlideModule.class) {
             if (sDiskCache == null) {
                 sDiskCache = createDiskCache(context);
             }
@@ -53,7 +64,7 @@ public class KSGlideModule extends AppGlideModule {
 
     private static synchronized DiskCache createDiskCache(Context context) {
         DiskCache diskCache = null;
-        synchronized (KSGlideModule.class) {
+        synchronized (USGlideModule.class) {
             if (context != null) {
                 try {
                     File externalCache;
@@ -84,6 +95,6 @@ public class KSGlideModule extends AppGlideModule {
             cacheLocation.mkdirs();
         }
         Timber.d("create cache in %s", cacheLocation.getPath());
-        return DiskLruCacheWrapper.get(cacheLocation, 104857600);
+        return DiskLruCacheWrapper.get(cacheLocation, 100 * 1024 * 1024);
     }
 }
