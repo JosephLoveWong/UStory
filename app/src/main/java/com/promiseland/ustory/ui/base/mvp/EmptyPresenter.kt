@@ -1,4 +1,4 @@
-package com.promiseland.ustory.ui.base
+package com.promiseland.ustory.ui.base.mvp
 
 import javax.inject.Inject
 

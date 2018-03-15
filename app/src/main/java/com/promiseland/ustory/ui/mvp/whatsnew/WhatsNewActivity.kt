@@ -22,7 +22,7 @@ import com.promiseland.ustory.R
 import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.base.util.APILevelHelper
 import com.promiseland.ustory.module.BaseActivityModule
-import com.promiseland.ustory.ui.base.BaseActivity
+import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
 import com.promiseland.ustory.ui.mvp.feed.FeedActivity
 import com.promiseland.ustory.ui.util.viewpager.PageIndicatorListener
 import kotlinx.android.synthetic.main.activity_whats_new.*
@@ -31,7 +31,7 @@ import timber.log.Timber
 /**
  * Created by Administrator on 2018/3/2.
  */
-class WhatsNewActivity : BaseActivity<WhatsNewPresenter>(), WhatsNewContract.View {
+class WhatsNewActivity : BaseViewActivity<WhatsNewPresenter>(), WhatsNewContract.View {
     companion object {
         var pagerScrollDelay = 4
         val pagerCount = 4

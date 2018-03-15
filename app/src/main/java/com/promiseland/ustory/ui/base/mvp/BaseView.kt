@@ -1,4 +1,4 @@
-package com.promiseland.ustory.ui.base
+package com.promiseland.ustory.ui.base.mvp
 
 /**
  * Created by Administrator on 2018/2/27.

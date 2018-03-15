@@ -1,6 +1,6 @@
 package com.promiseland.ustory.ui.mvp.whatsnew
 
-import com.promiseland.ustory.ui.base.BasePresenter
+import com.promiseland.ustory.ui.base.mvp.BasePresenter
 import javax.inject.Inject
 
 /**

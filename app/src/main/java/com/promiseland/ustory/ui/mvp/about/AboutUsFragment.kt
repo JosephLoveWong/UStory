@@ -3,13 +3,13 @@ package com.promiseland.ustory.ui.mvp.about
 import butterknife.OnClick
 import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.R
-import com.promiseland.ustory.ui.base.BaseFragment
-import com.promiseland.ustory.ui.base.EmptyPresenter
+import com.promiseland.ustory.ui.base.mvp.BaseViewFragment
+import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
 
 /**
  * Created by joseph on 2018/3/9.
  */
-class AboutUsFragment : BaseFragment<EmptyPresenter>() {
+class AboutUsFragment : BaseViewFragment<EmptyPresenter>() {
 
     private var mDebugClickStep = 0
     /**
@@ -47,7 +47,7 @@ class AboutUsFragment : BaseFragment<EmptyPresenter>() {
 
     private fun activateDebugMode() {
 //        this.mKitchenPreferences.setDebugModeEnabled(true)
-//        SnackbarHelper.show(activity as BaseActivity, R.string.debug_mode_activated_message as Int)
+//        SnackbarHelper.show(activity as BaseViewActivity, R.string.debug_mode_activated_message as Int)
 //        activity.invalidateOptionsMenu()
     }
 

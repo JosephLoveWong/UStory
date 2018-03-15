@@ -5,15 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.promiseland.ustory.R
-import com.promiseland.ustory.ui.base.BaseActivity
-import com.promiseland.ustory.ui.base.EmptyPresenter
+import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
+import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
 import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewAdapter
 import kotlinx.android.synthetic.main.activity_list_with_toolbar.*
 
 /**
  * Created by joseph on 2018/3/11.
  */
-class SettingsOverviewActivity : BaseActivity<EmptyPresenter>() {
+class SettingsOverviewActivity : BaseViewActivity<EmptyPresenter>() {
     companion object {
         fun launch(context: Context) {
             context.startActivity(Intent(context, SettingsOverviewActivity::class.java))

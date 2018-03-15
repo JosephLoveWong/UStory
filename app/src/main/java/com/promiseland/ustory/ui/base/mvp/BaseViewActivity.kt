@@ -1,4 +1,4 @@
-package com.promiseland.ustory.ui.base
+package com.promiseland.ustory.ui.base.mvp
 
 import android.os.Bundle
 import android.support.annotation.Nullable
@@ -6,12 +6,13 @@ import android.view.View
 import com.promiseland.kotlinandroid.ui.base.SupportActivity
 import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.UStoryApp
+import com.promiseland.ustory.ui.base.IBase
 import javax.inject.Inject
 
 /**
  * Created by Administrator on 2018/2/24.
  */
-abstract class BaseActivity<T : BaseContract.BasePresenter> : SupportActivity(), IBase, BaseContract.BaseView {
+abstract class BaseViewActivity<T : BaseContract.BasePresenter> : SupportActivity(), IBase, BaseContract.BaseView {
     lateinit var mRootView: View
 
     @Inject

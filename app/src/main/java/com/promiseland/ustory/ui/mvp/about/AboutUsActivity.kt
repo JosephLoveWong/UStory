@@ -3,15 +3,15 @@ package com.promiseland.ustory.ui.mvp.about
 import android.content.Context
 import android.content.Intent
 import com.promiseland.ustory.R
-import com.promiseland.ustory.ui.base.BaseActivity
-import com.promiseland.ustory.ui.base.EmptyPresenter
+import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
+import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
 import kotlinx.android.synthetic.main.activity_empty_with_toolbar_framed.*
 import kotlin.jvm.internal.Intrinsics
 
 /**
  * Created by joseph on 2018/3/9.
  */
-class AboutUsActivity : BaseActivity<EmptyPresenter>() {
+class AboutUsActivity : BaseViewActivity<EmptyPresenter>() {
     companion object {
         fun launch(context: Context) {
             context.startActivity(Intent(context, AboutUsActivity::class.java).putExtra("extra_open_from", "NAV"))

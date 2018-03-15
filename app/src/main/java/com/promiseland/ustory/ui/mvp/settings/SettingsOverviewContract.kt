@@ -3,7 +3,7 @@ package com.promiseland.ustory.ui.mvp.settings
 import com.promiseland.ustory.base.event.ErrorEvent
 import com.promiseland.ustory.base.model.ui.user.UserUiModel
 import com.promiseland.ustory.base.model.ui.user.UserUiModelSuccess
-import com.promiseland.ustory.ui.base.BaseContract
+import com.promiseland.ustory.ui.base.mvp.BaseContract
 import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewItem
 import com.promiseland.ustory.ui.mvp.settings.adapter.SettingsOverviewListItem
 

@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 
 import com.promiseland.ustory.AppComponent;
 import com.promiseland.ustory.R;
-import com.promiseland.ustory.ui.base.BaseFragment;
+import com.promiseland.ustory.ui.base.mvp.BaseViewFragment;
 import com.promiseland.ustory.ui.mvp.drawer.DrawerItem.TwoStateIcon;
 import com.promiseland.ustory.ui.mvp.drawer.DrawerItem.Type;
 
@@ -30,7 +30,7 @@ import butterknife.BindView;
 
 
 // TODO
-public class NavigationDrawerFragment extends BaseFragment implements DrawerAdapter.DrawerAdapterCallbacks {
+public class NavigationDrawerFragment extends BaseViewFragment implements DrawerAdapter.DrawerAdapterCallbacks {
     NavigationDrawerCallbacks mCallbacks;
     private int mCurrentSelectedPosition = 0;
     private DrawerAdapter mDrawerAdapter;

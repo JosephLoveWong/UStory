@@ -3,7 +3,7 @@ package com.promiseland.ustory.ui.mvp.settings
 import com.promiseland.ustory.R
 import com.promiseland.ustory.base.model.ui.user.UserUiModel
 import com.promiseland.ustory.base.util.FieldHelper
-import com.promiseland.ustory.ui.base.BasePresenter
+import com.promiseland.ustory.ui.base.mvp.BasePresenter
 import com.promiseland.ustory.ui.mvp.settings.adapter.*
 import java.util.Arrays.asList
 

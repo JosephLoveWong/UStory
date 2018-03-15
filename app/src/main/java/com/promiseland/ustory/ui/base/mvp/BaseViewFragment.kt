@@ -1,4 +1,4 @@
-package com.promiseland.ustory.ui.base
+package com.promiseland.ustory.ui.base.mvp
 
 import android.content.Context
 import android.os.Bundle
@@ -10,12 +10,13 @@ import butterknife.ButterKnife
 import com.promiseland.kotlinandroid.ui.base.SupportFragment
 import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.UStoryApp
+import com.promiseland.ustory.ui.base.IBase
 import javax.inject.Inject
 
 /**
  * Created by Administrator on 2018/2/24.
  */
-abstract class BaseFragment<T : BaseContract.BasePresenter> : SupportFragment(), IBase, BaseContract.BaseView {
+abstract class BaseViewFragment<T : BaseContract.BasePresenter> : SupportFragment(), IBase, BaseContract.BaseView {
 
     @Inject
     @Nullable

@@ -10,8 +10,8 @@ import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.base.util.ImageLoaderUtil
 import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.service.api.InstallationDataService
-import com.promiseland.ustory.ui.base.BaseActivity
-import com.promiseland.ustory.ui.base.EmptyPresenter
+import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
+import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
 import com.promiseland.ustory.ui.mvp.introscreen.IntroScreenActivity
 import com.promiseland.ustory.ui.mvp.feed.FeedActivity
 import com.promiseland.ustory.ui.mvp.whatsnew.WhatsNewActivity
@@ -27,7 +27,7 @@ import javax.inject.Inject
 /**
  * Created by Administrator on 2018/2/24.
  */
-class SplashActivity : BaseActivity<EmptyPresenter>() {
+class SplashActivity : BaseViewActivity<EmptyPresenter>() {
     private val picUrl = "http://api.dujin.org/bing/1920.php"
     private val mDisposable: CompositeDisposable? = CompositeDisposable()
     private var mInstallationDataService: InstallationDataService? = null

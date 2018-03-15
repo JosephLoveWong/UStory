@@ -25,8 +25,8 @@ import com.promiseland.ustory.R
 import com.promiseland.ustory.base.util.APILevelHelper
 import com.promiseland.ustory.base.util.ConfigurationUtils
 import com.promiseland.ustory.base.util.FieldHelper
-import com.promiseland.ustory.ui.base.BaseActivity
-import com.promiseland.ustory.ui.base.EmptyPresenter
+import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
+import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
 import com.promiseland.ustory.ui.mvp.feed.FeedActivity
 import com.promiseland.ustory.ui.util.ViewHelper
 import com.promiseland.ustory.ui.util.viewpager.PageIndicatorListener
@@ -39,7 +39,7 @@ import java.util.*
 /**
  * Created by Administrator on 2018/3/5.
  */
-class IntroScreenActivity : BaseActivity<EmptyPresenter>() , View.OnClickListener {
+class IntroScreenActivity : BaseViewActivity<EmptyPresenter>() , View.OnClickListener {
 
     companion object {
         var mBackgroundVideoUri: Uri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.introscreen_bg)

@@ -1,6 +1,6 @@
 package com.promiseland.ustory.ui.mvp.whatsnew
 
-import com.promiseland.ustory.ui.base.BaseContract
+import com.promiseland.ustory.ui.base.mvp.BaseContract
 
 /**
  * Created by Administrator on 2018/3/1.
