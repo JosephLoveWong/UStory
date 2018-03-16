@@ -96,7 +96,7 @@ class BaseActivity : AppCompatActivity() {
     }
 
     fun getSnackBarView(): View? {
-        val root = findViewById<View>(16908290) as ViewGroup
+        val root = findViewById<View>(R.id.snackbar_layout) as ViewGroup
         return if (root == null || root.childCount <= 0) {
             null
         } else root.getChildAt(0)
@@ -175,9 +175,9 @@ class BaseActivity : AppCompatActivity() {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     fun showMessage(event: MessageEvent) {
-        if (event.msgId !== Constants.NO_MESSAGE) {
+        if (event.msgId != Constants.NO_MESSAGE) {
             SnackbarHelper.show(this, event.msgId)
-            this.mEventBus.removeStickyEvent(event as Any)
+            this.mEventBus?.removeStickyEvent(event as Any)
         }
     }
 }
