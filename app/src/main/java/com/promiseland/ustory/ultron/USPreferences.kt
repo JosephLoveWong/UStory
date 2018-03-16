@@ -1,11 +1,14 @@
 package com.promiseland.ustory.ultron
 
+import java.util.*
+
 /**
  * Created by Administrator on 2018/2/9.
  */
 
 interface USPreferences {
     fun getLastUsedVersionCodeAndUpdate(): Int
+    fun getPreferredLocale(): Locale
 
     fun getDebugModeEnabled(): Boolean
     fun setDebugModeEnabled(enabled: Boolean)

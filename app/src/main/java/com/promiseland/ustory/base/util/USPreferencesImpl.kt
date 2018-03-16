@@ -18,6 +18,18 @@ import java.util.*
 
 class USPreferencesImpl
 constructor(context: Context, private val eventBus: EventBus) : USPreferences {
+    override fun getPreferredLocale(): Locale {
+        if (currentLocale == null) {
+            val string = prefs.getString("locale", null)
+            currentLocale = if (string == null) {
+                systemLocale
+            } else {
+                Locale(string)
+            }
+        }
+        return currentLocale as Locale
+    }
+
     override fun getDebugModeEnabled(): Boolean {
         return prefs.getBoolean("debug_mode_enabled", false)
     }
@@ -99,19 +111,6 @@ constructor(context: Context, private val eventBus: EventBus) : USPreferences {
 
     private var currentLocale: Locale? = null
     private val prefs: SharedPreferences
-
-    private val preferredLocale: Locale
-        get() {
-            if (currentLocale == null) {
-                val string = prefs.getString("locale", null)
-                currentLocale = if (string == null) {
-                    systemLocale
-                } else {
-                    Locale(string)
-                }
-            }
-            return currentLocale as Locale
-        }
 
     private val systemLocale: Locale
         get() {

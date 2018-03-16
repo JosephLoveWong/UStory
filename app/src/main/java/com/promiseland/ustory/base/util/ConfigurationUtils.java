@@ -20,6 +20,8 @@ import com.promiseland.ustory.R;
 
 import java.util.Locale;
 
+import static android.os.Build.VERSION_CODES.LOLLIPOP;
+
 public class ConfigurationUtils {
 
     public static boolean isTablet(Context context) {
@@ -95,7 +97,7 @@ public class ConfigurationUtils {
 
     public static int getAppBarOffset(Context context) {
         int offset = getActionBarHeight(context);
-        if (APILevelHelper.isAPILevelMinimal(21)) {
+        if (APILevelHelper.isAPILevelMinimal(LOLLIPOP)) {
             return offset + getStatusBarHeight(context);
         }
         return offset;
