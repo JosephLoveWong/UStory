@@ -2,8 +2,6 @@ package com.promiseland.ustory
 
 import com.promiseland.ustory.module.BaseActivityComponent
 import com.promiseland.ustory.module.BaseActivityModule
-import com.promiseland.ustory.module.BaseFragmentComponent
-import com.promiseland.ustory.module.BaseFragmentModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,6 +11,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
+    fun inject(uStoryApp: UStoryApp)
     fun plus(module: BaseActivityModule): BaseActivityComponent
-    fun plus(module: BaseFragmentModule): BaseFragmentComponent
 }

@@ -7,9 +7,11 @@ import android.view.View.OnClickListener;
 import com.promiseland.ustory.base.Constants;
 import com.promiseland.ustory.ui.base.ui.BaseActivity;
 
+import static android.support.design.widget.Snackbar.LENGTH_SHORT;
+
 public class SnackbarHelper {
     public static void show(BaseActivity activity, int messageId) {
-        show(activity, messageId, 0);
+        show(activity, messageId, Snackbar.LENGTH_LONG);
     }
 
     public static void show(BaseActivity activity, int messageId, int length) {
@@ -40,7 +42,7 @@ public class SnackbarHelper {
 
     public static void show(View view, String message, int length) {
         if (view != null) {
-            Snackbar.make(view, (CharSequence) message, length).show();
+            Snackbar.make(view, message, length).show();
         }
     }
 
@@ -63,7 +65,7 @@ public class SnackbarHelper {
         if (view == null) {
             return null;
         }
-        Snackbar snackbar = Snackbar.make(view, (CharSequence) message, length).setAction((CharSequence) action, listener);
+        Snackbar snackbar = Snackbar.make(view, message, length).setAction(action, listener);
         snackbar.show();
         return snackbar;
     }

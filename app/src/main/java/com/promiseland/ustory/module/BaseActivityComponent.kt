@@ -14,4 +14,6 @@ interface BaseActivityComponent {
     fun inject(activity: BaseActivity)
     fun inject(activity: SplashActivity)
     fun inject(activity: WhatsNewActivity)
+
+    fun plus(module: BaseFragmentModule): BaseFragmentComponent
 }

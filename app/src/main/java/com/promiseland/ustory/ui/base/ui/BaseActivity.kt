@@ -3,6 +3,7 @@ package com.promiseland.ustory.ui.base.ui
 import android.os.Build.VERSION_CODES.LOLLIPOP
 import android.os.Bundle
 import android.os.Handler
+import android.support.annotation.Nullable
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -17,39 +18,40 @@ import com.promiseland.ustory.base.event.MessageEvent
 import com.promiseland.ustory.base.model.Screen
 import com.promiseland.ustory.base.util.APILevelHelper
 import com.promiseland.ustory.base.util.ConfigurationUtils
-import com.promiseland.ustory.base.util.USPreferencesImpl
 import com.promiseland.ustory.module.BaseActivityComponent
 import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.ui.util.SnackbarHelper
 import com.promiseland.ustory.ui.util.SpannableStringHelper
+import com.promiseland.ustory.ultron.USPreferences
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.EventBusException
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Created by joseph on 2018/3/15.
  */
-class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
+    @Inject
+    @JvmField
+    @Nullable
     var mEventBus: EventBus? = null
-    private var currentLocale: Locale? = null
-    private var mBaseActivityComponent: BaseActivityComponent? = null
+    @Inject
+    @JvmField
+    @Nullable
+    var mPrefs: USPreferences? = null
 
-    private var mPreferences: USPreferencesImpl? = null
-    private val mHandler = Handler()
+    private var mCurrentLocale: Locale? = null
+    private val mBaseActivityComponent: BaseActivityComponent by lazy { UStoryApp.appComponent.plus(BaseActivityModule()) }
+    val mHandler by lazy { Handler() }
 
-    fun getBaseActivityComponent(): BaseActivityComponent? {
-        if (mBaseActivityComponent == null) {
-            mBaseActivityComponent = UStoryApp.appComponent.plus(BaseActivityModule())
-        }
-
-        return mBaseActivityComponent
-    }
+    fun getBaseActivityComponent(): BaseActivityComponent = mBaseActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var isOrientationChanged = true
-        getBaseActivityComponent()?.inject(this)
+        getBaseActivityComponent().inject(this)
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
@@ -76,16 +78,15 @@ class BaseActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        mBaseActivityComponent = null
         mHandler?.removeCallbacksAndMessages(null)
         super.onDestroy()
     }
 
     private fun checkLocale() {
-        val preferredLocale = mPreferences?.getPreferredLocale()
-        if (this.currentLocale != preferredLocale) {
-            this.currentLocale = preferredLocale
-            ConfigurationUtils.updateBaseLocale(this, this.currentLocale)
+        val preferredLocale = mPrefs?.getPreferredLocale()
+        if (this.mCurrentLocale != preferredLocale) {
+            this.mCurrentLocale = preferredLocale
+            ConfigurationUtils.updateBaseLocale(this, this.mCurrentLocale)
         }
     }
 
@@ -177,7 +178,7 @@ class BaseActivity : AppCompatActivity() {
     fun showMessage(event: MessageEvent) {
         if (event.msgId != Constants.NO_MESSAGE) {
             SnackbarHelper.show(this, event.msgId)
-            this.mEventBus?.removeStickyEvent(event as Any)
+            this.mEventBus?.removeStickyEvent(event)
         }
     }
 }

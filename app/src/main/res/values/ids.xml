@@ -2,4 +2,9 @@
 <resources>
     <item type="id" name="ks_imageview_original" />
     <item type="id" name="ks_imageview" />
+    <item type="id" name="snackbar_layout" />
+    <item type="id" name="toolbar_layout" />
+    <item type="id" name="appbar_layout" />
+    <item type="id" name="drawer_layout" />
+    <item type="id" name="container" />
 </resources>
