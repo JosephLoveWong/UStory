@@ -44,8 +44,8 @@ abstract class BaseActivity : AppCompatActivity() {
     var mPrefs: USPreferences? = null
 
     private var mCurrentLocale: Locale? = null
-    private val mBaseActivityComponent: BaseActivityComponent by lazy { UStoryApp.appComponent.plus(BaseActivityModule()) }
-    val mHandler by lazy { Handler() }
+    private val mBaseActivityComponent: BaseActivityComponent = UStoryApp.appComponent.plus(BaseActivityModule())
+    protected val mHandler = Handler()
 
     fun getBaseActivityComponent(): BaseActivityComponent = mBaseActivityComponent
 

@@ -280,12 +280,12 @@ class IntroScreenActivity : BaseViewActivity<EmptyPresenter>() , View.OnClickLis
                 3 -> {
                     title.setText(R.string.intro_screen_sign_up)
                     sub.visibility = View.GONE
-                    ButterKnife.findById<View>(root as View, R.id.login_buttons as Int).visibility = View.VISIBLE
-                    mGoogleLoginButton = ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_root_google as Int)
+                    ButterKnife.findById<View>(root as View, R.id.login_buttons).visibility = View.VISIBLE
+                    mGoogleLoginButton = ButterKnife.findById(root as View, R.id.fragment_auth_sign_up_root_google)
                     mGoogleLoginButton?.setOnClickListener(this@IntroScreenActivity)
-                    mFacebookLoginButton = ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_root_facebook as Int)
+                    mFacebookLoginButton = ButterKnife.findById(root as View, R.id.fragment_auth_sign_up_root_facebook)
                     mFacebookLoginButton?.setOnClickListener(this@IntroScreenActivity)
-                    setFormattedTermsOfServiceText(ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_terms as Int) as TextView)
+                    setFormattedTermsOfServiceText(ButterKnife.findById<View>(root as View, R.id.fragment_auth_sign_up_terms) as TextView)
                     return
                 }
                 else -> return

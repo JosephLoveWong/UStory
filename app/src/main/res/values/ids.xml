@@ -5,6 +5,13 @@
     <item type="id" name="snackbar_layout" />
     <item type="id" name="toolbar_layout" />
     <item type="id" name="appbar_layout" />
+    <!--外层抽屉-->
     <item type="id" name="drawer_layout" />
+    <!--内层抽屉-->
+    <item type="id" name="drawer_layout_inner" />
+    <!--左侧抽屉菜单-->
+    <item type="id" name="navigation_drawer" />
+    <!--右侧抽屉菜单-->
+    <item type="id" name="right_drawer" />
     <item type="id" name="container" />
 </resources>
