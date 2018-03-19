@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.annotation.Nullable
 import android.support.v4.app.DialogFragment
 import com.promiseland.ustory.base.util.ConfigurationUtils
+import com.promiseland.ustory.module.BaseFragmentComponent
 import com.promiseland.ustory.module.BaseFragmentModule
 import com.promiseland.ustory.ultron.USPreferences
 import org.greenrobot.eventbus.EventBus
@@ -25,12 +26,20 @@ class BaseDialogFragment : DialogFragment() {
 
     private var mCurrentLocale: Locale? = null
     protected var mParent: BaseActivity? = null
+    private var mBaseFragmentComponent: BaseFragmentComponent? = null
+
+    fun getBaseFragmentComponent(): BaseFragmentComponent? {
+        if (this.mBaseFragmentComponent == null) {
+            this.mBaseFragmentComponent = this.mParent?.getBaseActivityComponent()?.plus(BaseFragmentModule())
+        }
+        return this.mBaseFragmentComponent
+    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is BaseActivity) {
             this.mParent = context
-            this.mParent?.getBaseActivityComponent()?.plus(BaseFragmentModule())?.inject(this)
+            getBaseFragmentComponent()?.inject(this)
             return
         }
         throw IllegalStateException("Parent Activity should extend RealmActivity")
