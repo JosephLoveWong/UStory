@@ -19,8 +19,6 @@ interface USPreferences {
     fun getHasSeenWhatsNewScreen(): Boolean
     fun setHasSeenWhatsNewScreen(set: Boolean)
 
-    fun needsFirstTimeFeed(): Boolean
-
     fun getFirstStartDate(): Long
     fun setFirstStartDate(timeMillis: Long)
 }

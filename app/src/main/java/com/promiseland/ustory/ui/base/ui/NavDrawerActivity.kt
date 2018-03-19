@@ -1,7 +1,6 @@
 package com.promiseland.ustory.ui.base.ui
 
 import android.app.Activity
-import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.View
@@ -57,12 +56,7 @@ class NavDrawerActivity : BaseActivity(), NavigationDrawerFragment.NavigationDra
     }
 
     override fun onNavigationDrawerItemSelected(position: Int, calledByUserClick: Boolean) {
-        if (calledByUserClick) {
-            startActivity(KitchenStoriesActivity.launchFromFakeNavDrawer(this, position))
-            overridePendingTransition(R.anim.do_not_move_with_fade_in, R.anim.do_not_move_with_fade_out)
-            this.mIgnoreBackTransition = true
-            finish()
-        }
+        // TODO
     }
 
     override fun onBackPressed() {

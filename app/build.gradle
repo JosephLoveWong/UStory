@@ -37,10 +37,8 @@ android {
                     [
                             'src/main/res/layout/view',
                     ]
-
         }
     }
-
 }
 
 dependencies {

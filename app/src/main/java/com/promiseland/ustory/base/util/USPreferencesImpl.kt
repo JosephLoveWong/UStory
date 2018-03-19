@@ -62,10 +62,6 @@ constructor(context: Context, private val eventBus: EventBus) : USPreferences {
         prefs.edit().putBoolean("has_seen_whats_new_screen", set).apply()
     }
 
-    override fun needsFirstTimeFeed(): Boolean {
-        return Calendar.getInstance().timeInMillis - getFirstStartDate() < 172800000 //TODO WHO IS 17....
-    }
-
     override fun getLastUsedVersionCodeAndUpdate(): Int {
         val version = prefs.getInt("last_used_version_code", 0)
         if (version < BuildConfig.VERSION_CODE) {

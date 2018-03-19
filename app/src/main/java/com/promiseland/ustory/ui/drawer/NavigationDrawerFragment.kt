@@ -9,18 +9,17 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout.VERTICAL
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.promiseland.ustory.R
 import com.promiseland.ustory.base.event.DrawerEvent
 import com.promiseland.ustory.ui.base.ui.BaseFragment
+import kotlinx.android.synthetic.main.fragment_navigation_drawer.*
 import java.util.*
 
 /**
@@ -35,9 +34,6 @@ class NavigationDrawerFragment : BaseFragment(), DrawerAdapter.DrawerAdapterCall
     private var mSubDrawerLayout: DrawerLayout? = null
     private var mSubDrawerListener: DrawerLayout.DrawerListener? = null
     private var mFragmentContainerView: View? = null
-
-    @BindView(R.id.frg_navdrawer_main_menu)
-    var mDrawerListView: RecyclerView? = null
 
     interface NavigationDrawerCallbacks {
         fun onNavigationDrawerItemSelected(position: Int, selected: Boolean)
@@ -78,7 +74,7 @@ class NavigationDrawerFragment : BaseFragment(), DrawerAdapter.DrawerAdapterCall
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.mDrawerListView?.layoutManager = LinearLayoutManager(activity, VERTICAL, false)
+        frg_navdrawer_main_menu.layoutManager = LinearLayoutManager(activity, VERTICAL, false)
         onCreateAdapter()
     }
 
@@ -95,9 +91,7 @@ class NavigationDrawerFragment : BaseFragment(), DrawerAdapter.DrawerAdapterCall
         if (!(this.mSubDrawerLayout == null || this.mSubDrawerListener == null)) {
             this.mSubDrawerLayout?.removeDrawerListener(this.mSubDrawerListener!!)
         }
-        if (this.mDrawerListView != null) {
-            this.mDrawerListView?.setAdapter(null)
-        }
+        frg_navdrawer_main_menu.adapter = null
         this.mDrawerToggle = null
         this.mFragmentContainerView = null
         super.onDestroyView()
@@ -110,7 +104,7 @@ class NavigationDrawerFragment : BaseFragment(), DrawerAdapter.DrawerAdapterCall
 
     private fun onCreateAdapter() {
         this.mDrawerAdapter = createKitchenDrawerAdapter()
-        this.mDrawerListView?.adapter = this.mDrawerAdapter
+        frg_navdrawer_main_menu.adapter = this.mDrawerAdapter
         this.mDrawerAdapter?.setSelected(this.mCurrentSelectedPosition)
     }
 
@@ -174,7 +168,7 @@ class NavigationDrawerFragment : BaseFragment(), DrawerAdapter.DrawerAdapterCall
                 }
             }
         }
-        this.mDrawerLayout?.post(Runnable {
+        this.mDrawerLayout?.post({
             if (this.mDrawerToggle != null) {
                 this.mDrawerToggle?.syncState()
             }
@@ -199,9 +193,9 @@ class NavigationDrawerFragment : BaseFragment(), DrawerAdapter.DrawerAdapterCall
     }
 
     fun selectItem(navSelection: Int, calledByUserClick: Boolean) {
-        if (this.mDrawerListView == null || this.mDrawerListView?.adapter == null || this.mDrawerAdapter!!.isEnabled(navSelection)) {
+        if (frg_navdrawer_main_menu.adapter == null || this.mDrawerAdapter!!.isEnabled(navSelection)) {
             val selectedPosition = this.mCurrentSelectedPosition
-            if (!(this.mDrawerListView == null || navSelection == 8)) {
+            if (navSelection != 8) {
                 this.mDrawerAdapter?.setSelected(navSelection)
                 this.mCurrentSelectedPosition = navSelection
             }
@@ -264,7 +258,7 @@ class NavigationDrawerFragment : BaseFragment(), DrawerAdapter.DrawerAdapterCall
     }
 
     fun setCurrentSelectedPosition(navSelection: Int) {
-        if (this.mDrawerListView != null && this.mDrawerAdapter != null && this.mDrawerAdapter!!.itemCount > 0 && navSelection < this.mDrawerAdapter!!.itemCount) {
+        if (this.mDrawerAdapter != null && this.mDrawerAdapter!!.itemCount > 0 && navSelection < this.mDrawerAdapter!!.itemCount) {
             this.mDrawerAdapter?.setSelected(navSelection)
             this.mCurrentSelectedPosition = navSelection
         }
