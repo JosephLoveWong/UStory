@@ -1,4 +1,4 @@
-package com.promiseland.ustory.ui.mvp.drawer;
+package com.promiseland.ustory.ui.drawer;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;

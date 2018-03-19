@@ -1,6 +1,6 @@
-package com.promiseland.ustory.ui.mvp.drawer;
+package com.promiseland.ustory.ui.drawer;
 
-public class DrawerItem {
+class DrawerItem {
     private TwoStateIcon icons;
     private boolean isSelected;
     private int title;

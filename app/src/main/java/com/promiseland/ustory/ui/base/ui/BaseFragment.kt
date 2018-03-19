@@ -20,7 +20,7 @@ import javax.inject.Inject
 /**
  * Created by joseph on 2018/3/17.
  */
-class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment() {
     @Inject
     @JvmField
     @Nullable
@@ -83,7 +83,7 @@ class BaseFragment : Fragment() {
         super.onDestroyView()
     }
 
-    protected fun checkLocale() {
+    protected open fun checkLocale() {
         val preferredLocale = this.mPrefs?.getPreferredLocale()
         if (this.mCurrentLocale != preferredLocale) {
             this.mCurrentLocale = preferredLocale
