@@ -1,7 +1,6 @@
 package com.promiseland.ustory.ui.base.mvp
 
 import android.os.Bundle
-import android.view.View
 import com.promiseland.ustory.ui.base.IBase
 import com.promiseland.ustory.ui.base.ui.BaseActivity
 import timber.log.Timber
@@ -26,6 +25,7 @@ abstract class BaseViewActivity<out P : BaseContract.BasePresenter> : BaseActivi
 
         overridePendingTransition()
         setContentView(getContentLayout())
+        bindView(savedInstanceState)
         initData()
     }
 
@@ -62,7 +62,7 @@ abstract class BaseViewActivity<out P : BaseContract.BasePresenter> : BaseActivi
         // subclass implements if needed
     }
 
-    override fun bindView(view: View, savedInstanceState: Bundle?) {
+    override fun bindView(savedInstanceState: Bundle?) {
     }
 
     override fun showLoading() {

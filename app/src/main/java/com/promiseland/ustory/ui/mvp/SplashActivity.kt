@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.promiseland.ustory.R
+import com.promiseland.ustory.base.util.ImageLoaderUtil
 import com.promiseland.ustory.service.api.InstallationDataService
 import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
 import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
@@ -13,6 +14,7 @@ import com.promiseland.ustory.ui.mvp.whatsnew.WhatsNewActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_splash_screen.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -27,18 +29,11 @@ class SplashActivity : BaseViewActivity<EmptyPresenter>() {
 
     override fun getContentLayout(): Int = R.layout.activity_splash_screen
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(getContentLayout())
-
-        initData()
-    }
-
     override fun initData() {
-//        val lastUsedVersion = mPrefs?.getLastUsedVersionCodeAndUpdate() ?: 0
-//        showWhatsNewScreenIfNeeded(lastUsedVersion)
+        val lastUsedVersion = mPrefs?.getLastUsedVersionCodeAndUpdate() ?: 0
+        showWhatsNewScreenIfNeeded(lastUsedVersion)
 
-//        ImageLoaderUtil.LoadImage(this, picUrl, iv_ad)
+        ImageLoaderUtil.LoadImage(this, picUrl, iv_ad)
 
         // zanshi bu yong
 //        mDisposable?.add(countDown(4)
@@ -57,7 +52,7 @@ class SplashActivity : BaseViewActivity<EmptyPresenter>() {
 //
 //                }))
 
-//        fl_ad.setOnClickListener { toMain() }
+        fl_ad.setOnClickListener { toMain() }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -77,7 +72,7 @@ class SplashActivity : BaseViewActivity<EmptyPresenter>() {
 
     private fun showWhatsNewScreenIfNeeded(lastUsedVersion: Int) {
         if (lastUsedVersion != 0 && lastUsedVersion < 240) { //TODO WHO IS 240
-//            mPrefs?.setHasSeenWhatsNewScreen(false)
+            mPrefs?.setHasSeenWhatsNewScreen(false)
         }
     }
 
@@ -88,8 +83,8 @@ class SplashActivity : BaseViewActivity<EmptyPresenter>() {
 
     private fun startFeedActivity() {
         // TODO 临时设置
-//        mPrefs?.setHasSeenWhatsNewScreen(false)
-//        mPrefs!!.setHasSeenIntroScreen(false)
+        mPrefs?.setHasSeenWhatsNewScreen(true)
+        mPrefs!!.setHasSeenIntroScreen(false)
 
         Handler().postDelayed({
             if (!mPrefs!!.getHasSeenWhatsNewScreen()) {

@@ -1,7 +1,6 @@
 package com.promiseland.ustory.ui.base.mvp
 
 import android.os.Bundle
-import android.view.View
 import com.promiseland.ustory.ui.base.IBase
 import com.promiseland.ustory.ui.base.ui.BaseFragment
 import timber.log.Timber
@@ -55,7 +54,7 @@ abstract class BaseViewFragment<out P : BaseContract.BasePresenter> : BaseFragme
         getPresenter()?.detachView()
     }
 
-    override fun bindView(view: View, savedInstanceState: Bundle?) {
+    override fun bindView(savedInstanceState: Bundle?) {
     }
 
     override fun showLoading() {

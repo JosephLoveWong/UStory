@@ -1,7 +1,6 @@
 package com.promiseland.ustory.ui.base
 
 import android.os.Bundle
-import android.view.View
 
 /**
  * Created by Administrator on 2018/2/24.
@@ -15,7 +14,7 @@ interface IBase {
     /**
      * 初始化布局
      */
-    fun bindView(view: View, savedInstanceState: Bundle?)
+    fun bindView(savedInstanceState: Bundle?)
 
     /**
      * 加载数据

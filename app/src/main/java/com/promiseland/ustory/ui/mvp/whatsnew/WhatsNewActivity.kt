@@ -57,7 +57,7 @@ class WhatsNewActivity : BaseViewActivity<WhatsNewPresenter>(), WhatsNewContract
 
     override fun getContentLayout(): Int = R.layout.activity_whats_new
 
-    override fun bindView(view: View, savedInstanceState: Bundle?) {
+    override fun bindView(savedInstanceState: Bundle?) {
         mSavedPagerPosition = savedInstanceState?.getInt("STATE_VIEW_PAGER_PAGE") ?: 0
         if (mSavedPagerPosition == 3) {
             updateNextPageButtonText(true)

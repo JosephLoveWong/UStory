@@ -63,7 +63,7 @@ class IntroScreenActivity : BaseViewActivity<EmptyPresenter>() , View.OnClickLis
 
     override fun getContentLayout(): Int = R.layout.activity_intro_screen
 
-    override fun bindView(view: View, savedInstanceState: Bundle?) {
+    override fun bindView(savedInstanceState: Bundle?) {
         var i = 0
         if (savedInstanceState != null) {
             mIsFirstScreen = savedInstanceState.getBoolean("IS_FIRST_SCREEN", true)
@@ -87,6 +87,7 @@ class IntroScreenActivity : BaseViewActivity<EmptyPresenter>() , View.OnClickLis
         }
         initBackgroundVideo(savedInstanceState)
 
+        RxView.clicks(btn_skip).subscribe({ showFeed() })
         RxView.clicks(btn_been_here).subscribe({ showFeed() })
         RxView.clicks(btn_i_am_new).subscribe({ showInfoPager(true) })
     }
