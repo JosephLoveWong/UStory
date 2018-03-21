@@ -17,11 +17,8 @@ import android.widget.TextView
 import butterknife.ButterKnife
 import com.airbnb.lottie.LottieAnimationView
 import com.jakewharton.rxbinding2.view.RxView
-import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.R
-import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.base.util.APILevelHelper
-import com.promiseland.ustory.module.BaseActivityModule
 import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
 import com.promiseland.ustory.ui.mvp.feed.FeedActivity
 import com.promiseland.ustory.ui.util.viewpager.PageIndicatorListener
@@ -32,6 +29,8 @@ import timber.log.Timber
  * Created by Administrator on 2018/3/2.
  */
 class WhatsNewActivity : BaseViewActivity<WhatsNewPresenter>(), WhatsNewContract.View {
+    override fun createPresenterInstance(): WhatsNewPresenter = WhatsNewPresenter()
+
     companion object {
         var pagerScrollDelay = 4
         val pagerCount = 4
@@ -58,10 +57,6 @@ class WhatsNewActivity : BaseViewActivity<WhatsNewPresenter>(), WhatsNewContract
 
     override fun getContentLayout(): Int = R.layout.activity_whats_new
 
-    override fun setupComponent(appComponent: AppComponent) {
-        UStoryApp.appComponent.plus(BaseActivityModule()).inject(this)
-    }
-
     override fun bindView(view: View, savedInstanceState: Bundle?) {
         mSavedPagerPosition = savedInstanceState?.getInt("STATE_VIEW_PAGER_PAGE") ?: 0
         if (mSavedPagerPosition == 3) {
@@ -81,15 +76,15 @@ class WhatsNewActivity : BaseViewActivity<WhatsNewPresenter>(), WhatsNewContract
 
     override fun initData() {
         RxView.clicks(btn_skip).subscribe({
-            mPresenter?.closeClick()
+            getPresenter()?.closeClick()
         })
 
         RxView.clicks(btn_next).subscribe({
             pagerScrollDelay = 8
             if (pager.currentItem == 3) {
-                mPresenter?.closeClick()
+                getPresenter()?.closeClick()
             } else {
-                mPresenter?.nextClicked()
+                getPresenter()?.nextClicked()
             }
         })
 
@@ -125,8 +120,8 @@ class WhatsNewActivity : BaseViewActivity<WhatsNewPresenter>(), WhatsNewContract
         outState.putInt("STATE_VIEW_PAGER_PAGE", if (pager != null) pager.currentItem else 0)
     }
 
-    override fun onBackPressedSupport() {
-        super.onBackPressedSupport()
+    override fun onBackPressed() {
+        super.onBackPressed()
         showFeed()
     }
 

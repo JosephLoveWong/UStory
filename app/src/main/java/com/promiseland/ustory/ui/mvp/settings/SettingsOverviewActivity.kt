@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_list_with_toolbar.*
  * Created by joseph on 2018/3/11.
  */
 class SettingsOverviewActivity : BaseViewActivity<EmptyPresenter>() {
+    override fun createPresenterInstance(): EmptyPresenter = EmptyPresenter()
+
     companion object {
         fun launch(context: Context) {
             context.startActivity(Intent(context, SettingsOverviewActivity::class.java))

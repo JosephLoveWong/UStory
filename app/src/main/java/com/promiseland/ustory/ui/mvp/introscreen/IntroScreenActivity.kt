@@ -19,7 +19,6 @@ import android.view.animation.TranslateAnimation
 import android.widget.TextView
 import butterknife.ButterKnife
 import com.jakewharton.rxbinding2.view.RxView
-import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.BuildConfig
 import com.promiseland.ustory.R
 import com.promiseland.ustory.base.util.APILevelHelper
@@ -40,6 +39,7 @@ import java.util.*
  * Created by Administrator on 2018/3/5.
  */
 class IntroScreenActivity : BaseViewActivity<EmptyPresenter>() , View.OnClickListener {
+    override fun createPresenterInstance(): EmptyPresenter = EmptyPresenter()
 
     companion object {
         var mBackgroundVideoUri: Uri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.introscreen_bg)
@@ -62,9 +62,6 @@ class IntroScreenActivity : BaseViewActivity<EmptyPresenter>() , View.OnClickLis
     internal var mGoogleLoginButton: View? = null
 
     override fun getContentLayout(): Int = R.layout.activity_intro_screen
-
-    override fun setupComponent(appComponent: AppComponent) {
-    }
 
     override fun bindView(view: View, savedInstanceState: Bundle?) {
         var i = 0
@@ -185,8 +182,8 @@ class IntroScreenActivity : BaseViewActivity<EmptyPresenter>() , View.OnClickLis
         }
     }
 
-    override fun onBackPressedSupport() {
-        super.onBackPressedSupport()
+    override fun onBackPressed() {
+        super.onBackPressed()
         showFeed()
     }
 

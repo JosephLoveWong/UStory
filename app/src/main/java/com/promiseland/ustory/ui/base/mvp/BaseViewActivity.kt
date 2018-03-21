@@ -1,46 +1,65 @@
 package com.promiseland.ustory.ui.base.mvp
 
 import android.os.Bundle
-import android.support.annotation.Nullable
 import android.view.View
-import com.promiseland.kotlinandroid.ui.base.SupportActivity
-import com.promiseland.ustory.AppComponent
-import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.ui.base.IBase
-import javax.inject.Inject
+import com.promiseland.ustory.ui.base.ui.BaseActivity
+import timber.log.Timber
 
 /**
  * Created by Administrator on 2018/2/24.
  */
-abstract class BaseViewActivity<T : BaseContract.BasePresenter> : SupportActivity(), IBase, BaseContract.BaseView {
-    lateinit var mRootView: View
+abstract class BaseViewActivity<out P : BaseContract.BasePresenter> : BaseActivity(), IBase, BaseContract.BaseView {
+    private var mRetainPresenterFragment: BaseRetainPresenterFragment<P>? = null
 
-    @Inject
-    @Nullable
-    @JvmField
-    var mPresenter: T? = null
+    abstract fun createPresenterInstance(): P
+
+    private fun getPresenterTag(): String {
+        return localClassName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mRootView = layoutInflater.inflate(getContentLayout(), null)
-        setContentView(mRootView)
-        bindView(mRootView, savedInstanceState)
+        if (this.mRetainPresenterFragment == null) {
+            retainOrCreateFragment()
+        }
 
-        setupComponent(UStoryApp.appComponent)
-        attachView()
+        overridePendingTransition()
+        setContentView(getContentLayout())
         initData()
     }
 
-    fun attachView() {
-        mPresenter?.attachView(this)
+    private fun retainOrCreateFragment() {
+        val fm = supportFragmentManager
+        this.mRetainPresenterFragment = fm.findFragmentByTag(getPresenterTag()) as BaseRetainPresenterFragment<P>?
+        if (this.mRetainPresenterFragment == null) {
+            this.mRetainPresenterFragment = BaseRetainPresenterFragment()
+            fm.beginTransaction().add(this.mRetainPresenterFragment, getPresenterTag()).commit()
+            Timber.d("BaseViewActivity: Presenter created %s", getPresenterTag())
+            return
+        }
+        Timber.d("BaseViewActivity: Presenter retained %s", getPresenterTag())
     }
 
-    override fun onDestroy() {
-        mPresenter?.detachView()
-        super.onDestroy()
+    protected fun getPresenter(): P? {
+        if (this.mRetainPresenterFragment == null) {
+            retainOrCreateFragment()
+        }
+        return this.mRetainPresenterFragment?.getPresenter(this)
     }
 
-    override fun setupComponent(appComponent: AppComponent) {
+    override fun onPause() {
+        super.onPause()
+        getPresenter()?.detachView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getPresenter()?.attachView(this)
+    }
+
+    open fun overridePendingTransition() {
+        // subclass implements if needed
     }
 
     override fun bindView(view: View, savedInstanceState: Bundle?) {

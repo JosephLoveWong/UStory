@@ -15,7 +15,6 @@ import com.promiseland.ustory.UStoryApp
 import com.promiseland.ustory.base.Constants
 import com.promiseland.ustory.base.event.LocaleChangedEvent
 import com.promiseland.ustory.base.event.MessageEvent
-import com.promiseland.ustory.base.model.Screen
 import com.promiseland.ustory.base.util.APILevelHelper
 import com.promiseland.ustory.base.util.ConfigurationUtils
 import com.promiseland.ustory.module.BaseActivityComponent
@@ -50,14 +49,9 @@ abstract class BaseActivity : AppCompatActivity() {
     fun getBaseActivityComponent(): BaseActivityComponent = mBaseActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        var isOrientationChanged = true
         getBaseActivityComponent().inject(this)
         super.onCreate(savedInstanceState)
 
-        if (savedInstanceState == null) {
-            isOrientationChanged = false
-        }
-        Screen.onCreate(this, windowManager.defaultDisplay, isOrientationChanged)
         checkLocale()
     }
 
@@ -68,7 +62,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         super.onResume()
-        Screen.onResume(windowManager.defaultDisplay)
         checkLocale()
     }
 

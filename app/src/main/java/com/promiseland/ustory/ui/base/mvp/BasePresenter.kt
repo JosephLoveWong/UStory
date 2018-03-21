@@ -1,5 +1,8 @@
 package com.promiseland.ustory.ui.base.mvp
 
+import io.reactivex.disposables.CompositeDisposable
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.EventBusException
 import javax.inject.Inject
 
 /**
@@ -8,16 +11,31 @@ import javax.inject.Inject
 open class BasePresenter<out T : BaseContract.BaseView> @Inject
 constructor() : BaseContract.BasePresenter {
     private var mView: T? = null
+    protected var mDisposables: CompositeDisposable? = null
+    protected var mEventBus: EventBus? = null
 
     override fun getView(): T = mView as T
 
     override fun attachView(view: BaseContract.BaseView) {
         mView = view as T
+        try {
+            this.mEventBus?.register(this)
+        } catch (e: EventBusException) {
+        }
+
+        this.mDisposables = CompositeDisposable()
+        restoreSubscribersIfNeeded()
     }
 
     override fun detachView() {
-        mView?.let {
-            mView = null
+        this.mView = null
+        if (this.mEventBus != null) {
+            this.mEventBus?.unregister(this)
+        }
+        if (this.mDisposables != null) {
+            this.mDisposables?.dispose()
         }
     }
+
+    protected fun restoreSubscribersIfNeeded() {}
 }

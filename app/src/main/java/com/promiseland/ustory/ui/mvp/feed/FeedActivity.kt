@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
-import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.R
 import com.promiseland.ustory.ui.base.mvp.BaseViewActivity
-import com.promiseland.ustory.ui.base.mvp.BaseContract
+import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
 import com.promiseland.ustory.ui.mvp.about.AboutUsActivity
 import com.promiseland.ustory.ui.mvp.settings.SettingsOverviewActivity
 import kotlinx.android.synthetic.main.activity_list_with_search_bar.*
@@ -17,7 +16,9 @@ import kotlinx.android.synthetic.main.activity_list_with_search_bar.*
 /**
  * Created by Administrator on 2018/2/24.
  */
-class FeedActivity : BaseViewActivity<BaseContract.BasePresenter>() {
+class FeedActivity : BaseViewActivity<EmptyPresenter>() {
+    override fun createPresenterInstance(): EmptyPresenter = EmptyPresenter()
+
     companion object {
         fun launch(context: Context) {
             context.startActivity(Intent(context, FeedActivity::class.java))
@@ -27,9 +28,6 @@ class FeedActivity : BaseViewActivity<BaseContract.BasePresenter>() {
     private var mLayoutManager: LinearLayoutManager? = null
 
     override fun getContentLayout(): Int = R.layout.activity_list_with_search_bar
-
-    override fun setupComponent(appComponent: AppComponent) {
-    }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         if (mLayoutManager != null) {

@@ -29,13 +29,6 @@ interface BaseContract {
          * 加载失败重试
          */
         fun onRetry()
-//        /**
-//         * 绑定生命周期
-//         *
-//         * @param <T>
-//         * @return <T>
-//         */
-//        fun <T> bindToLife(): LifecycleTransformer<T>
     }
 
     interface BasePresenter {

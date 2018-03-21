@@ -32,7 +32,13 @@
             android:theme="@style/KitchenThemeOverlay"
             android:launchMode="singleTask"/>
 
-        <activity android:name=".ui.mvp.about.AboutUsActivity"/>
+        <activity android:name=".ui.mvp.about.AboutUsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <activity android:name=".ui.mvp.settings.SettingsOverviewActivity"/>
     </application>

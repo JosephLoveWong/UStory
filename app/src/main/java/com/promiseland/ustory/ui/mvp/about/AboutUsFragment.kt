@@ -1,7 +1,6 @@
 package com.promiseland.ustory.ui.mvp.about
 
 import butterknife.OnClick
-import com.promiseland.ustory.AppComponent
 import com.promiseland.ustory.R
 import com.promiseland.ustory.ui.base.mvp.BaseViewFragment
 import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
@@ -10,6 +9,7 @@ import com.promiseland.ustory.ui.base.mvp.EmptyPresenter
  * Created by joseph on 2018/3/9.
  */
 class AboutUsFragment : BaseViewFragment<EmptyPresenter>() {
+    override fun createPresenterInstance(): EmptyPresenter = EmptyPresenter()
 
     private var mDebugClickStep = 0
     /**
@@ -21,10 +21,6 @@ class AboutUsFragment : BaseViewFragment<EmptyPresenter>() {
      * 加载数据
      */
     override fun initData() {
-    }
-
-    override fun setupComponent(appComponent: AppComponent) {
-//        UStoryApp.appComponent.plus(BaseFragmentModule()).inject(this);
     }
 
     @OnClick(R.id.ks_icon_debug_mode)
