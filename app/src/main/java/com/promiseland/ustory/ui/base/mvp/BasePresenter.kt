@@ -1,5 +1,6 @@
 package com.promiseland.ustory.ui.base.mvp
 
+import android.support.annotation.Nullable
 import io.reactivex.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.EventBusException
@@ -8,10 +9,13 @@ import javax.inject.Inject
 /**
  * Created by Administrator on 2018/2/24.
  */
-open class BasePresenter<out T : BaseContract.BaseView> @Inject
-constructor() : BaseContract.BasePresenter {
+open class BasePresenter<out T : BaseContract.BaseView> : BaseContract.BasePresenter {
     private var mView: T? = null
     protected var mDisposables: CompositeDisposable? = null
+
+    @Inject
+    @JvmField
+    @Nullable
     protected var mEventBus: EventBus? = null
 
     override fun getView(): T = mView as T
