@@ -12,7 +12,7 @@ abstract class BaseViewFragment<out P : BaseContract.BasePresenter> : BaseFragme
 
     private var mRetainPresenterFragment: BaseRetainPresenterFragment<P>? = null
 
-    abstract fun createPresenterInstance(): P
+    open fun createPresenterInstance(): P = EmptyPresenter() as P
 
     private fun getPresenterTag(): String? {
         return this.javaClass.simpleName

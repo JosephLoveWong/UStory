@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit
  * Created by Administrator on 2018/2/24.
  */
 class SplashActivity : BaseViewActivity<EmptyPresenter>() {
-    override fun createPresenterInstance(): EmptyPresenter = EmptyPresenter()
 
     private val picUrl = "http://api.dujin.org/bing/1920.php"
     private val mDisposable: CompositeDisposable? = CompositeDisposable()
@@ -84,7 +83,7 @@ class SplashActivity : BaseViewActivity<EmptyPresenter>() {
     private fun startFeedActivity() {
         // TODO 临时设置
         mPrefs?.setHasSeenWhatsNewScreen(true)
-        mPrefs!!.setHasSeenIntroScreen(false)
+        mPrefs?.setHasSeenIntroScreen(true)
 
         Handler().postDelayed({
             if (!mPrefs!!.getHasSeenWhatsNewScreen()) {

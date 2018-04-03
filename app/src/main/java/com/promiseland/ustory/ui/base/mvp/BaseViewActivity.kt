@@ -11,7 +11,7 @@ import timber.log.Timber
 abstract class BaseViewActivity<out P : BaseContract.BasePresenter> : BaseActivity(), IBase, BaseContract.BaseView {
     private var mRetainPresenterFragment: BaseRetainPresenterFragment<P>? = null
 
-    abstract fun createPresenterInstance(): P
+    open fun createPresenterInstance(): P = EmptyPresenter() as P
 
     private fun getPresenterTag(): String {
         return localClassName

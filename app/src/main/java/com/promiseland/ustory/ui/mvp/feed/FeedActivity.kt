@@ -41,11 +41,11 @@ class FeedActivity : BaseViewActivity<EmptyPresenter>() {
         if (savedInstanceState != null) {
             intent.putExtra("extra_position", savedInstanceState.getParcelable<Parcelable>("extra_position"))
         }
-
-        empty_state_recycler_view.enableVerticalScrollEventPassThrough()
     }
 
     override fun initData() {
+        empty_state_recycler_view.enableVerticalScrollEventPassThrough()
+
         nv_menu_left.setCheckedItem(R.id.action_home)
         nv_menu_left.setNavigationItemSelectedListener {
             when (it.itemId) {

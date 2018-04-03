@@ -36,6 +36,8 @@ android {
             res.srcDirs +=
                     [
                             'src/main/res/layout/view',
+                            'src/main/res/layout/demo',
+                            'src/main/res/drawable/view'
                     ]
         }
     }

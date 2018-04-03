@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".ui.mvp.SplashActivity"
+            android:name=".ui.mvp.DemoActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppStartTheme">
             <intent-filter>
@@ -24,15 +25,29 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.mvp.whatsnew.WhatsNewActivity"/>
+        <activity
+            android:name=".ui.mvp.SplashActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppStartTheme">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
 
-        <activity android:name=".ui.mvp.introscreen.IntroScreenActivity"/>
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
 
-        <activity android:name=".ui.mvp.feed.FeedActivity"
-            android:theme="@style/KitchenThemeOverlay"
+        <activity android:name=".ui.mvp.whatsnew.WhatsNewActivity"
             android:launchMode="singleTask"/>
 
-        <activity android:name=".ui.mvp.about.AboutUsActivity">
+        <activity android:name=".ui.mvp.introscreen.IntroScreenActivity"
+            android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.mvp.feed.FeedActivity"
+            android:theme="@style/UStoryThemeOverlay"
+            android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.mvp.about.AboutUsActivity"
+            android:theme="@style/UStoryThemeOverlay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

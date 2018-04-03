@@ -15,7 +15,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="KitchenThemeOverlay" parent="AppTheme">
+    <style name="UStoryThemeOverlay" parent="AppTheme">
         <item name="colorPrimary">@color/honey_melon</item>
         <item name="colorAccent">@color/honey_melon</item>
         <item name="windowNoTitle">true</item>
@@ -46,7 +46,7 @@
         <item name="android:background">@color/transparent</item>
     </style>
 
-    <style name="Font.H2.Touchgrey" parent="KitchenThemeOverlay">
+    <style name="Font.H2.Touchgrey" parent="UStoryThemeOverlay">
         <item name="android:textColor">@color/touch_grey</item>
     </style>
 

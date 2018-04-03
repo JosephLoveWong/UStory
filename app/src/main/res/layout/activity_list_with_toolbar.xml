@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
 
-    <RelativeLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/transparent"
+        android:elevation="0dp">
 
-        <include
-            android:id="@+id/toolbar_layout"
-            layout="@layout/include_toolbar"/>
-
-        <com.promiseland.ustory.ui.widget.EmptyStateRecyclerView
-            android:id="@+id/empty_state_recycler_view"
+        <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar_layout"/>
+            android:background="@color/transparent"
+            app:layout_scrollFlags="scroll|enterAlways"
+            tools:background="@color/honey_melon"/>
+    </android.support.design.widget.AppBarLayout>
 
-        <!--<include-->
-            <!--android:id="@+id/cast_mini_controller"-->
-            <!--layout="@layout/include_cast_mini_controller"/>-->
-
-        <!--<com.ajnsnewmedia.kitchenstories.ui.widget.TimerView-->
-            <!--android:id="@+id/timer_view"-->
-            <!--style="@style/timer"/>-->
-
-        <!--<include-->
-            <!--android:id="@+id/toolbar_layout_shadow"-->
-            <!--layout="@layout/include_toolbar_shadow"/>-->
-    </RelativeLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nv_menu_left"
-        android:layout_width="320dp"
+    <com.promiseland.ustory.ui.widget.EmptyStateRecyclerView
+        android:id="@+id/empty_state_recycler_view"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left"
-        app:headerLayout="@layout/list_item_drawer_top"
-        app:itemBackground="@drawable/bg_transparent"
-        app:menu="@menu/menu_drawer"/>
-</android.support.v4.widget.DrawerLayout>
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</android.support.design.widget.CoordinatorLayout>

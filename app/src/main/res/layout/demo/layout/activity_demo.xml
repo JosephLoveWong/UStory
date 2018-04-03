@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fed255"
+    android:gravity="center">
+
+    <com.promiseland.ustory.ui.widget.custom.FloatingView
+        android:layout_centerInParent="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#ffff00"
+        android:visibility="gone"/>
+
+    <com.promiseland.ustory.ui.widget.custom.MovingTextView
+        android:clickable="true"
+        android:id="@+id/movingTextView"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="hello"
+        android:visibility="gone"/>
+
+    <com.promiseland.ustory.ui.widget.custom.CircleView
+        android:padding="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:color="#ffff00"
+        android:visibility="gone"/>
+
+    <com.promiseland.ustory.ui.widget.custom.HorizontalScrollViewEx
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <com.promiseland.ustory.ui.widget.custom.LeafLoadingView
+        android:id="@+id/leafLoading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="30dp"
+        android:visibility="gone"/>
+
+    <com.promiseland.ustory.ui.widget.custom.PieView
+        android:id="@+id/pieView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="30dp"
+        android:visibility="gone"/>
+
+    <com.promiseland.ustory.ui.widget.custom.RadarView
+        android:id="@+id/radarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="30dp"/>
+
+</RelativeLayout>

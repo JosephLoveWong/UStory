@@ -4,6 +4,10 @@
         <attr name="corner_radius" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="CircleView">
+        <attr name="color" format="color"/>
+    </declare-styleable>
+
     <declare-styleable name="USImageView">
         <attr name="background" format="reference"/>
         <attr name="isCacheAll" format="boolean"/>
