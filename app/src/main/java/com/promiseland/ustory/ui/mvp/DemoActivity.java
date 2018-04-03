@@ -14,6 +14,7 @@ import com.promiseland.ustory.R;
 import com.promiseland.ustory.ui.widget.custom.HorizontalScrollViewEx;
 import com.promiseland.ustory.ui.widget.custom.LeafLoadingView;
 import com.promiseland.ustory.ui.widget.custom.ListViewEx;
+import com.promiseland.ustory.ui.widget.custom.GooView;
 import com.promiseland.ustory.ui.widget.custom.MovingTextView;
 import com.promiseland.ustory.ui.widget.custom.PieView;
 import com.promiseland.ustory.ui.widget.custom.RadarView;
@@ -37,6 +38,8 @@ public class DemoActivity extends Activity {
     PieView mPieView;
     @BindView(R.id.radarView)
     RadarView mRadarView;
+    @BindView(R.id.magicCircle)
+    GooView mMagicCircle;
 
     static List<String> sDatas;
 
@@ -57,7 +60,12 @@ public class DemoActivity extends Activity {
 //        initView();
 //        showLoading();
 //        showPieView();
-        showRadarView();
+//        showRadarView();
+        showMagicCircle();
+    }
+
+    private void showMagicCircle() {
+
     }
 
     private void showRadarView() {
