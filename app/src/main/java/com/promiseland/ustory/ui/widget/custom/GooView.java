@@ -131,7 +131,7 @@ public class GooView extends View {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
                     PointF curPoint = (PointF) animation.getAnimatedValue();
-                    mDragPoint.set(curPoint.x, curPoint.y);
+                    mDragPoint.set(curPoint);
                     invalidate();
                 }
             });
@@ -240,13 +240,11 @@ public class GooView extends View {
             canvas.drawPath(mPath, mPaint);
         }
 
-        // 绘制拖拽圆
         if (mState != State.STATE_DISMISS) {
+            // 绘制拖拽圆
             canvas.drawCircle(mDragPoint.x, mDragPoint.y, mDragRadius, mPaint);
-        }
-
-        //绘制小红点消失时的爆炸动画
-        if (mState == State.STATE_DISMISS && explodeIndex < EXPLODE_RES.length) {
+        } else if (mState == State.STATE_DISMISS && explodeIndex < EXPLODE_RES.length) {
+            //绘制小红点消失时的爆炸动画
             canvas.drawBitmap(mExplodeBitmaps[explodeIndex], mDragPoint.x - mDragRadius / 2, mDragPoint.y - mDragRadius / 2, mPaint);
         }
     }

@@ -18,6 +18,7 @@ import com.promiseland.ustory.ui.widget.custom.GooView;
 import com.promiseland.ustory.ui.widget.custom.MovingTextView;
 import com.promiseland.ustory.ui.widget.custom.PieView;
 import com.promiseland.ustory.ui.widget.custom.RadarView;
+import com.promiseland.ustory.ui.widget.custom.flowlayout.FlowLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,8 @@ public class DemoActivity extends Activity {
     RadarView mRadarView;
     @BindView(R.id.magicCircle)
     GooView mMagicCircle;
+    @BindView(R.id.flowLayout)
+    FlowLayout mFlowLayout;
 
     static List<String> sDatas;
 
@@ -61,7 +64,22 @@ public class DemoActivity extends Activity {
 //        showLoading();
 //        showPieView();
 //        showRadarView();
-        showMagicCircle();
+//        showMagicCircle();
+        showFlowLayout();
+    }
+
+    private void showFlowLayout() {
+        Random random = new Random();
+        for (int i = 0; i < 50; i++) {
+            String text = "";
+            TextView textView = new TextView(this);
+            int i1 = random.nextInt(10) + 3;
+            for (int j = 0; j < i1; j++) {
+                text += "hello";
+            }
+            textView.setText(text + i);
+            mFlowLayout.addView(textView);
+        }
     }
 
     private void showMagicCircle() {
@@ -75,7 +93,7 @@ public class DemoActivity extends Activity {
     private void showPieView() {
         List<PieView.PieData> mDatas = new ArrayList<>();
         Random random = new Random(20);
-        for (int i = 0; i< 6; i++) {
+        for (int i = 0; i < 6; i++) {
             PieView.PieData data = new PieView.PieData("name " + i, random.nextInt(10) + 5);
             mDatas.add(data);
         }
@@ -88,7 +106,7 @@ public class DemoActivity extends Activity {
             @Override
             public void run() {
                 int currentProgress = mLeafLoadingView.getCurrentProgress();
-                if(currentProgress <= 100 ) {
+                if (currentProgress <= 100) {
                     mLeafLoadingView.setCurrentProgress(currentProgress + 5);
                     mLeafLoadingView.postDelayed(this, 500);
                 }

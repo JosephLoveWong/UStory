@@ -74,6 +74,16 @@
         android:paddingLeft="10dp"
         android:paddingRight="20dp"
         android:paddingTop="25dp"
+        android:paddingBottom="30dp"
+        android:visibility="gone"/>
+
+    <com.promiseland.ustory.ui.widget.custom.flowlayout.FlowLayout
+        android:id="@+id/flowLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="25dp"
         android:paddingBottom="30dp" />
 
 </RelativeLayout>
