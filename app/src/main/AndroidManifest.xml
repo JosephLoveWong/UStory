@@ -14,15 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".ui.mvp.DemoActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppStartTheme">
+        <activity android:name=".ui.mvp.demo.DemoSplashActivity"
+                  android:launchMode="singleTask"
+                  android:theme="@style/AppStartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.mvp.demo.DemoViewActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppStartTheme">
+        </activity>
+
+        <activity
+            android:name=".ui.mvp.demo.DemoActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppStartTheme">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
 
         <activity

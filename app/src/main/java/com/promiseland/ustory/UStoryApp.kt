@@ -4,11 +4,9 @@ import android.app.Application
 import android.content.Intent
 import android.content.IntentFilter
 import android.support.annotation.Nullable
-import com.promiseland.ustory.data.db.MyObjectBox
 import com.promiseland.ustory.service.LanguageChangeBroadcastReceiver
 import com.promiseland.ustory.ultron.USPreferences
 import com.squareup.leakcanary.LeakCanary
-import io.objectbox.BoxStore
 import timber.log.Timber
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -21,7 +19,7 @@ class UStoryApp : Application() {
     companion object {
         val ENCRYPTED: Boolean = false // 数据库是否加密
         var appComponent: AppComponent by Delegates.notNull()
-        var boxStore: BoxStore by Delegates.notNull()
+//        var boxStore: BoxStore by Delegates.notNull()
     }
 
     private var languageChangeReceiver: LanguageChangeBroadcastReceiver by Delegates.notNull()
@@ -40,7 +38,7 @@ class UStoryApp : Application() {
         initAppComponent()
         appComponent.inject(this)
 //        initLeakCanary()
-        initBoxStore()
+//        initBoxStore()
         registerReceiver()
     }
 
@@ -64,9 +62,9 @@ class UStoryApp : Application() {
     }
 
     private fun initBoxStore() {
-        boxStore = MyObjectBox.builder()
-                .androidContext(this)
-                .build()
+//        boxStore = MyObjectBox.builder()
+//                .androidContext(this)
+//                .build()
     }
 
     private fun initAppComponent() {

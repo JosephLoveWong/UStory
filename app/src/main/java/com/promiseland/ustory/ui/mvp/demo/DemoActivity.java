@@ -1,6 +1,8 @@
-package com.promiseland.ustory.ui.mvp;
+package com.promiseland.ustory.ui.mvp.demo;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,14 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.promiseland.ustory.R;
+import com.promiseland.ustory.ui.util.ViewHelper;
+import com.promiseland.ustory.ui.widget.custom.GooView;
 import com.promiseland.ustory.ui.widget.custom.HorizontalScrollViewEx;
 import com.promiseland.ustory.ui.widget.custom.LeafLoadingView;
 import com.promiseland.ustory.ui.widget.custom.ListViewEx;
-import com.promiseland.ustory.ui.widget.custom.GooView;
-import com.promiseland.ustory.ui.widget.custom.MovingTextView;
 import com.promiseland.ustory.ui.widget.custom.PieView;
 import com.promiseland.ustory.ui.widget.custom.RadarView;
-import com.promiseland.ustory.ui.widget.custom.flowlayout.FlowLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,8 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DemoActivity extends Activity {
-    @BindView(R.id.movingTextView)
-    MovingTextView movingView;
     @BindView(R.id.horizontalScrollView)
     HorizontalScrollViewEx mHorizontalScrollViewEx;
     @BindView(R.id.leafLoading)
@@ -41,17 +39,6 @@ public class DemoActivity extends Activity {
     RadarView mRadarView;
     @BindView(R.id.magicCircle)
     GooView mMagicCircle;
-    @BindView(R.id.flowLayout)
-    FlowLayout mFlowLayout;
-
-    static List<String> sDatas;
-
-    static {
-        sDatas = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            sDatas.add("name " + i);
-        }
-    }
 
 
     @Override
@@ -60,25 +47,52 @@ public class DemoActivity extends Activity {
         setContentView(R.layout.activity_demo);
         ButterKnife.bind(this);
 
-//        initView();
-//        showLoading();
-//        showPieView();
-//        showRadarView();
-//        showMagicCircle();
-        showFlowLayout();
+        initView();
+        showLoading();
+        showPieView();
+        showRadarView();
+        showMagicCircle();
+
+        switch (name) {
+            case "HorizontalScrollView":
+                ViewHelper.makeGone(mLeafLoadingView, mPieView, mRadarView, mMagicCircle);
+                ViewHelper.makeVisible(mHorizontalScrollViewEx);
+                break;
+            case "LeafLoadingView":
+                ViewHelper.makeGone(mHorizontalScrollViewEx, mPieView, mRadarView, mMagicCircle);
+                ViewHelper.makeVisible(mLeafLoadingView);
+                break;
+            case "PieView":
+                ViewHelper.makeGone(mHorizontalScrollViewEx, mLeafLoadingView, mRadarView, mMagicCircle);
+                ViewHelper.makeVisible(mPieView);
+                break;
+            case "RadarView":
+                ViewHelper.makeGone(mHorizontalScrollViewEx, mLeafLoadingView, mPieView, mMagicCircle);
+                ViewHelper.makeVisible(mRadarView);
+                break;
+            case "GooView":
+                ViewHelper.makeGone(mHorizontalScrollViewEx, mLeafLoadingView, mPieView, mRadarView);
+                ViewHelper.makeVisible(mMagicCircle);
+                break;
+            default:
+                break;
+        }
     }
 
-    private void showFlowLayout() {
-        Random random = new Random();
+    private static String name;
+
+    public static void launch(Context context, String name) {
+        Intent intent = new Intent(context, DemoActivity.class);
+        context.startActivity(intent);
+        DemoActivity.name = name;
+    }
+
+    static List<String> sDatas;
+
+    static {
+        sDatas = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-            String text = "";
-            TextView textView = new TextView(this);
-            int i1 = random.nextInt(10) + 3;
-            for (int j = 0; j < i1; j++) {
-                text += "hello";
-            }
-            textView.setText(text + i);
-            mFlowLayout.addView(textView);
+            sDatas.add("name " + i);
         }
     }
 
@@ -129,12 +143,6 @@ public class DemoActivity extends Activity {
             mHorizontalScrollViewEx.addView(content);
         }
     }
-
-    @OnClick(R.id.movingTextView)
-    void move() {
-        movingView.smoothScrollTo(100, 100);
-    }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
